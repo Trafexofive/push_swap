@@ -61,7 +61,6 @@ int main(int argc, char **argv)
 	}
 
   // Sort the stack A.
-  // ...
 
   // Print the sequence of instructions used to sort the stack A.
 
