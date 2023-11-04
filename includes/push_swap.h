@@ -7,11 +7,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-typedef struct stack
+typedef struct node
 {
-	int	*elements;
-	int	size;
-	int	top;
-} stack;
+	int			data;
+	struct node *next;
+}node;
+
 
 #endif
