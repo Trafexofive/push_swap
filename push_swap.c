@@ -1,56 +1,44 @@
 
-#include "includes/push_swap.h"
+#include "push_swap.h"
 
 //function that will fill the stack a from argv
-void	fill_stack(int ac, char **av, node *sa)
+
+node_t	*link_node(node_t *node, int value)
 {
-	exit(EXIT_FAILURE);
+	int i =0;
+	node_t	new_node;
+
+	new_node = (node_t)malloc(sizeof(struct node_t));
+	node->next = &new_node;
+	new_node->data = value;
+	new_node->next = NULL;
+	return (node);
 }
 
-node	create_stack(int size)
-{
-	int i = 0;
+void	print_node(int index, node_t head)
 
-	while (i < size)
-	{
-
-		i++;
-	}
-}
+//node	*create_stack(int size)
 void	ft_errors(int error)
 {
 	printf("%s", "error\n");
 }
 
-int	*ft_parse(int argc, char **argv)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (argv[i] != '\n')
-	{
-		while (argv[i][j])
-		{
-			printf("%s\n", argv[i][j]);
-			j++;
-		}
-
-		i++;
-	}
-
-}
-
+//int	*ft_parse(int argc, char **argv)
 
 
 int main(int ac, char **av)
 {
-	node	sa;
+	node_t	head;
+
+	head = malloc(sizeof(node_t));
+	head->data = 30;
+	head->next = NULL;
+	link_node(head, 2);
+	printf("%d\n", head->data);
+	free (&head);
+
+
+
 	
-
-	fill_stack(int ac, char **av, node *sa);
-
-
 	return EXIT_SUCCESS;
 }
