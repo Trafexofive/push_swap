@@ -2,20 +2,28 @@
 #include "push_swap.h"
 
 //function that will fill the stack a from argv
-
-node_t	*link_node(node_t *node, int value)
+Node	*init_stack(void)
 {
-	int i =0;
-	node_t	new_node;
+	Node	*head;
 
-	new_node = (node_t)malloc(sizeof(struct node_t));
-	node->next = &new_node;
-	new_node->data = value;
-	new_node->next = NULL;
-	return (node);
+	head = (Node *)malloc(sizeof(Node));
+	head->next = NULL;
+	head->data = NULL;
+	return (head);
 }
 
-void	print_node(int index, node_t head)
+Node	*link_node(Node *node, int value)
+{
+	node	*new_node;
+
+	new_node = (Node *)malloc(sizeof(Node));
+	node->next = new_node;
+	new_node->data = value;
+	new_node->next = NULL;
+	return(new_node);
+}
+
+//void	print_node(int index, node_t head)
 
 //node	*create_stack(int size)
 void	ft_errors(int error)
@@ -28,14 +36,23 @@ void	ft_errors(int error)
 
 int main(int ac, char **av)
 {
-	node_t	head;
+	int	i;
+	Node	*head;
 
-	head = malloc(sizeof(node_t));
-	head->data = 30;
+	i = 0;
+	head = (Node *)malloc(sizeof(Node));
+	if (!head)
+		return (1);
+	head->data = NULL;
 	head->next = NULL;
-	link_node(head, 2);
-	printf("%d\n", head->data);
-	free (&head);
+
+	link_node(head, NULL);
+	while (i < 10)
+	{
+		link_node(head->next, i);
+		i++;
+	}
+	free (head);
 
 
 
