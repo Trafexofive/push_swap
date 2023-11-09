@@ -1,7 +1,12 @@
 
+// clone intra libft
 #include "push_swap.h"
 
 //function that will fill the stack a from argv
+int	to_int(char c)
+{
+	return (c - '0');
+}
 t_node	*init_stack(void)
 {
 	t_node	*head;
@@ -64,7 +69,7 @@ int	*ft_parse(int ac, char **av)
 	{
 		while (av[i] => '0' && av[i] =< '9')
 		{
-			ft_	
+
 		}
 
 	}
