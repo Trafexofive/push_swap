@@ -10,12 +10,12 @@ CC := cc
 all : $(NAME)
 
 %.o : %.c 
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 push :
 	git add .
 	git commit -m "fast commit"
 	git push
-clean : $(OBJ)
+clean : 
 	$(RM) $(OBJ)
 fclean :
 	$(RM) $(NAME)

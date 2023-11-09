@@ -8,21 +8,21 @@
 // Function to create a new node with the given data
 t_node* createNode(int data)
 {
-    t_node* newNode = (Node*)malloc(sizeof(Node));
+    t_node* newNode = (t_node*)malloc(sizeof(t_node));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
 }
 
 // Function to insert a new node at the end of the linked list
-void insertAtEnd(Node** head, int data)
+void insertAtEnd(t_node** head, int data)
 {
-    Node* newNode = createNode(data);
+    t_node* newNode = createNode(data);
     if (*head == NULL)
         *head = newNode;
 	else
 	{
-        Node* current = *head;
+        t_node* current = *head;
         while (current->next != NULL)
             current = current->next;
         current->next = newNode;
@@ -30,11 +30,10 @@ void insertAtEnd(Node** head, int data)
 }
 
 // Function to traverse and print the linked list
-void traverseLinkedList(Node* head)
+void traverseLinkedList(t_node* head)
 {
-    Node* current = head;
-    while (current != NULL)
-	{
+    t_node* current = head;
+    while (current != NULL)	{
         printf("%d -> ", current->data);
         current = current->next;
     }
@@ -42,12 +41,12 @@ void traverseLinkedList(Node* head)
 }
 
 // Function to free the memory used by the linked list
-void freeLinkedList(Node* head)
+void freeLinkedList(t_node* head)
 {
-    Node* current = head;
+    t_node* current = head;
     while (current != NULL)
 	{
-        Node* temp = current;
+        t_node* temp = current;
         current = current->next;
         free(temp);
     }

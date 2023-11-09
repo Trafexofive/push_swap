@@ -9,7 +9,7 @@ t_node	*init_stack(void)
 	head = (t_node *)malloc(sizeof(t_node));
 	if (!head)
 		return (NULL);
-	head->data = NULL;
+	head->data = 0;
 	head->next = NULL;
 	return (head);
 }
@@ -40,7 +40,7 @@ t_node	*create_stack(int size, t_node *head, int *elements, int debug)
 	while (i < size)
 	{
 		current_node = link_node(head, elements[i]);
-		if (degub == 1)
+		if (debug == 1)
 			printf("%d\n", current_node->data);
 		current_node = current_node->next;
 		i++;
@@ -48,11 +48,6 @@ t_node	*create_stack(int size, t_node *head, int *elements, int debug)
 	return (head);
 
 }
-void	ft_errors(int error)
-{
-	printf("%s", "error\n");
-}
-
 //int	*ft_parse(int argc, char **argv)
 
 void	fill_t(int *arr)
@@ -68,11 +63,12 @@ void	fill_t(int *arr)
 
 int main(int ac, char **av)
 {
-	int	i;
 	t_node	*head;
-	int *elements[10];
+	int elements[10];
 
-	i = 0;
+	(void)ac;
+	(void)av;
+
 	fill_t(elements);
 	head = init_stack();
 	head = create_stack(10, head, elements, 1);

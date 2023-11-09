@@ -30,20 +30,4 @@ void print_list_backward(struct node *head) {
   printf("\n");
 }
 
-int main() {
-  struct node *head = NULL;
-
-  // Insert some nodes into the list.
-  insert_node(&head, 10);
-  insert_node(&head, 20);
-  insert_node(&head, 30);
-
-  // Print the list in the forward direction.
-  print_list_forward(head);
-
-  // Print the list in the backward direction.
-  print_list_backward(head);
-
-  return 0;
-}
 

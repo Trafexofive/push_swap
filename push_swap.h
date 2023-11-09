@@ -14,4 +14,6 @@ typedef struct node
 }t_node;
 
 
+void freeLinkedList(t_node* head);
+
 #endif
