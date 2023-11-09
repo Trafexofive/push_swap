@@ -6,9 +6,9 @@
 // Define a structure for a node in the linked list
 
 // Function to create a new node with the given data
-Node* createNode(int data)
+t_node* createNode(int data)
 {
-    Node* newNode = (Node*)malloc(sizeof(Node));
+    t_node* newNode = (Node*)malloc(sizeof(Node));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;

@@ -10,7 +10,7 @@
 typedef struct node 
 {
 	int				data;
-	struct Node *next;
+	struct node *next;
 }t_node;
 
 
