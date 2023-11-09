@@ -13,7 +13,13 @@ typedef struct node
 	struct node *next;
 }t_node;
 
+typedef struct stack_data
+{
+	int	*sa_data;
+	int	*sb_data;
+}t_data;
 
-void freeLinkedList(t_node* head);
+
+void freeLinkedList(t_node *head);
 
 #endif

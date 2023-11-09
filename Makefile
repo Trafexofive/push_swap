@@ -1,7 +1,7 @@
 
 CFLAGS := -Wall -Wextra -Werror
 NAME := push_swap
-SRC := push_swap.c utils.c 
+SRC := ./push_swap.c ./utils.c
 OBJ := $(SRC:.c=.o)
 HEADER := push_swap.h
 RM := rm -rf
@@ -10,7 +10,7 @@ CC := cc
 all : $(NAME)
 
 %.o : %.c 
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $^ -o $%
 push :
 	git add .
 	git commit -m "fast commit"

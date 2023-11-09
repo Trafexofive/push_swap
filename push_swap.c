@@ -27,7 +27,7 @@ t_node	*link_node(t_node *node, int value)
 
 //void	print_node(int index, node_t head)
 
-t_node	*create_stack(int size, t_node *head, int *elements, int debug)
+t_node	*create_stack(int size, t_node *head, int debug)
 {
 	int i = 0;
 	t_node	*current_node;
@@ -39,39 +39,51 @@ t_node	*create_stack(int size, t_node *head, int *elements, int debug)
 	
 	while (i < size)
 	{
-		current_node = link_node(head, elements[i]);
+		current_node = link_node(head, i); 
 		if (debug == 1)
 			printf("%d\n", current_node->data);
-		current_node = current_node->next;
 		i++;
 	}
 	return (head);
 
 }
-//int	*ft_parse(int argc, char **argv)
-
-void	fill_t(int *arr)
+int	*ft_parse(int ac, char **av)
 {
-	int i = 0;
+	int	i = 0;
+	const char	*buffer;
+	size_t		string_av_len;
 
-	while (arr[i])
+	string_av_len = ft_strlen(av[1]);
+	buffer = (const char *) malloc(sizeof(const char) * string_av_len);
+	// struct containing stack size
+	
+	if (ac == 0)
+		return (0);
+
+	if (ac == 1)
 	{
-		arr[i] = i;
-		i++;
+		while (av[i] => '0' && av[i] =< '9')
+		{
+			ft_	
+		}
+
 	}
 }
+
+
 
 int main(int ac, char **av)
 {
 	t_node	*head;
-	int elements[10];
+	t_node	*top_sa;
+	t_node	*top_sb;
 
-	(void)ac;
-	(void)av;
 
-	fill_t(elements);
-	head = init_stack();
-	head = create_stack(10, head, elements, 1);
+
+	top_sb = init_stack();
+	top_sa = init_stack();
+	top_sa = create_stack(10, top_sa, 1);
+	top_sb= create_stack(10, top_sb, 1);
 	freeLinkedList(head);
 	
 
