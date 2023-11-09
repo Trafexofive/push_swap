@@ -4,7 +4,7 @@
 //function that will fill the stack a from argv
 Node	*init_stack(void)
 {
-	Node	*head;
+	t_node	*head;
 
 	head = (Node *)malloc(sizeof(Node));
 	head->next = NULL;
@@ -25,7 +25,21 @@ Node	*link_node(Node *node, int value)
 
 //void	print_node(int index, node_t head)
 
-//node	*create_stack(int size)
+t_node	*create_stack(int size, t_node *head, int *elements)
+{
+	int i = 0;
+	t_node	*current_node;
+
+	current_node = NULL;
+	head = init_stack();
+	
+	while (i < size)
+	{
+		current_node = link_node(head, );
+		
+	}
+
+}
 void	ft_errors(int error)
 {
 	printf("%s", "error\n");
@@ -37,7 +51,8 @@ void	ft_errors(int error)
 int main(int ac, char **av)
 {
 	int	i;
-	Node	*head;
+	t_node	*head;
+	int *element[10];
 
 	i = 0;
 	head = (Node *)malloc(sizeof(Node));

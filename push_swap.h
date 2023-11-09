@@ -7,11 +7,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-typedef struct Node 
+typedef struct node 
 {
 	int				data;
 	struct Node *next;
-}Node;
+}t_node;
 
 
 #endif
