@@ -52,9 +52,11 @@ t_node	*create_stack(int size, t_node *head, int debug)
 	return (head);
 
 }
-int	*ft_parse(int ac, char **av)
+
+char	*buffer_args(int ac, char **av)
 {
-	int	i = 0;
+	int	i = 1;
+	int j = 0;
 	const char	*buffer;
 	size_t		string_av_len;
 
@@ -67,12 +69,18 @@ int	*ft_parse(int ac, char **av)
 
 	if (ac == 1)
 	{
-		while (av[i] => '0' && av[i] =< '9')
+		while (av[i][j])
 		{
-
+			if (av[i][j] => '0' && av[i][j] =< '9')
+				buffer[j] = av[i][j];
+			if (av[i][j] == ' ')
+				buffer[j] = ' ';
+			i++;
+			j++;
 		}
-
+		return buffer;
 	}
+	return (NULL);
 }
 
 
