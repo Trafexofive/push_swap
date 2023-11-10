@@ -18,10 +18,12 @@ int	count_white_space(char *s)
 	}
 	return (j);
 }
+
 int	to_int(char c)
 {
 	return (c - '0');
 }
+
 t_node	*init_stack(void)
 {
 	t_node	*head;
@@ -75,7 +77,7 @@ char	*buffer_args(int ac, char **av)
 	char	*buffer;
 	size_t		string_av_len;
 
-	string_av_len = ft_strlen((char *)av[0]);
+	string_av_len = ft_strlen((char *)av[1]);
 	buffer = (char *)malloc(sizeof(char) * string_av_len);
 	if (!buffer)
 		return (NULL);
@@ -105,11 +107,18 @@ int	*arr_buffer(char *buffer, int len)
 	while (arr[j])
 	{
 
-		while (buffer[i] != ' ')
+		while (buffer[i] != '\0')
 		{
-			arr[j] = to_int(buffer[i]);
+			if (buffer == ' ')
+			{
+				arr[j] = to_int(buffer[i]);
+				if (ft_isnum(buffer[i + 1]))
+				{
+					
+					arr[j] = to_int(buffer[i]);
+				}
+			}
 			i++;
-			j++;
 		}
 		i++;
 	}
