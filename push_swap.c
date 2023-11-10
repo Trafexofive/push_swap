@@ -3,6 +3,21 @@
 #include "push_swap.h"
 
 //function that will fill the stack a from argv
+//
+
+int	count_white_space(char *s)
+{
+	int i = 0;
+	int j = 0;
+
+	while (s[i])
+	{
+		if (s[i] == ' ')
+			j++;
+		i++;
+	}
+	return (j);
+}
 int	to_int(char c)
 {
 	return (c - '0');
@@ -57,30 +72,26 @@ char	*buffer_args(int ac, char **av)
 {
 	int	i = 1;
 	int j = 0;
-	const char	*buffer;
+	char	*buffer;
 	size_t		string_av_len;
 
-	string_av_len = ft_strlen(av[1]);
-	buffer = (const char *) malloc(sizeof(const char) * string_av_len);
+	string_av_len = ft_strlen((char *)av[0]);
+	buffer = (char *)malloc(sizeof(char) * string_av_len);
+	if (!buffer)
+		return (NULL);
 	// struct containing stack size
 	
-	if (ac == 0)
-		return (0);
+	printf("stop\n");
 
-	if (ac == 1)
-	{
-		while (av[i][j])
+		while (av[i][j] != '\0')
 		{
-			if (av[i][j] => '0' && av[i][j] =< '9')
+			if (av[i][j] >= '0' && av[i][j] <= '9')
 				buffer[j] = av[i][j];
 			if (av[i][j] == ' ')
 				buffer[j] = ' ';
-			i++;
 			j++;
 		}
 		return buffer;
-	}
-	return (NULL);
 }
 
 int	*arr_buffer(char *buffer, int len)
@@ -116,16 +127,17 @@ int main(int ac, char **av)
 
 	buffer = buffer_args(ac, av);
 	buffer_len = ft_strlen(buffer);
+	printf("buffer len --> %zu\n", buffer_len);
 	arr = arr_buffer(buffer, buffer_len);
+	printf("buffer --> %s\n", buffer);
 	free(buffer);
 
 
 
-	top_sb = init_stack();
 	top_sa = init_stack();
-	top_sa = create_stack(10, top_sa, 1);
-	top_sb= create_stack(10, top_sb, 1);
-	freeLinkedList(head);
+	top_sa = create_stack(buffer_len - count_white_space(buffer), top_sa, 1, arr);
+	free(arr);
+	freeLinkedList(top_sa);
 	
 
 
