@@ -83,7 +83,27 @@ char	*buffer_args(int ac, char **av)
 	return (NULL);
 }
 
+int	*arr_buffer(char *buffer, int len)
+{
+	int i = 0;
+	int j = 0;
+	int	*arr = malloc(sizeof(int) * len);
+	if (!arr)
+		return (NULL);
 
+	while (arr[j])
+	{
+
+		while (buffer[i] != ' ')
+		{
+			arr[j] = to_int(buffer[i]);
+			i++;
+			j++;
+		}
+		i++;
+	}
+	return (arr);
+}
 
 int main(int ac, char **av)
 {
