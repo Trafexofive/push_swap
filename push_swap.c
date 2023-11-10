@@ -32,7 +32,7 @@ t_node	*link_node(t_node *node, int value)
 
 //void	print_node(int index, node_t head)
 
-t_node	*create_stack(int size, t_node *head, int debug)
+t_node	*create_stack(int size, t_node *head, int debug, int *arr_args)
 {
 	int i = 0;
 	t_node	*current_node;
@@ -44,7 +44,7 @@ t_node	*create_stack(int size, t_node *head, int debug)
 	
 	while (i < size)
 	{
-		current_node = link_node(head, i); 
+		current_node = link_node(head, arr_args[i]); 
 		if (debug == 1)
 			printf("%d\n", current_node->data);
 		i++;
@@ -110,6 +110,14 @@ int main(int ac, char **av)
 	t_node	*head;
 	t_node	*top_sa;
 	t_node	*top_sb;
+	char	*buffer;
+	int		*arr;
+	size_t	buffer_len;
+
+	buffer = buffer_args(ac, av);
+	buffer_len = ft_strlen(buffer);
+	arr = arr_buffer(buffer, buffer_len);
+	free(buffer);
 
 
 
