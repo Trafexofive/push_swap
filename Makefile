@@ -3,7 +3,7 @@ CFLAGS := -Wall -Wextra -Werror
 NAME := push_swap
 SRC := ./push_swap.c ./utils.c
 OBJ := $(SRC:.c=.o)
-HEADER := push_swap.h
+HEADERS := push_swap.h ./libft/libft.h
 RM := rm -rf
 CC := cc
 
