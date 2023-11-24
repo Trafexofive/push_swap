@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 11:27:33 by mlamkadm          #+#    #+#             */
-/*   Updated: 2022/12/12 16:14:12 by mlamkadm         ###   ########.fr       */
+/*   Created: 2022/12/14 18:58:25 by mlamkadm          #+#    #+#             */
+/*   Updated: 2023/06/06 19:17:54 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+void	ft_putnbr(int n, int *count)
 {
-	size_t	i;
-	char	*dstx;
-	char	*srcx;
+	long	nbr;
 
-	dstx = (char *) dst ;
-	srcx = (char *) src ;
-	i = n;
-	if (!dst && !src)
-		return (NULL);
-	if (!n)
-		return (dst);
-	while (n > 0 && dstx > srcx)
+	nbr = n;
+	if (nbr < 0)
 	{
-		dstx[i] = srcx[i];
-        i--;
-		n--;
+		ft_putchar('-', count);
+		nbr *= -1;
 	}
-	i = 0;
-	while (n-- > 0)
+	if (nbr > 9)
 	{
-		dstx[i] = srcx[i];
-		i++;
+		ft_putnbr(nbr / 10, count);
+		ft_putchar(nbr % 10 + 48, count);
 	}
-	return (dst);
+	if (nbr >= 0 && nbr <= 9)
+		ft_putchar(nbr + 48, count);
 }
