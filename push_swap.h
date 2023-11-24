@@ -11,8 +11,17 @@
 typedef struct node 
 {
 	int				data;
+    unsigned int    cursor;
+    unsigned int    tail;
 	struct node *next;
 }t_node;
+
+typedef struct s_parse_data
+{
+    int *parse_arr;
+    char    *av;
+    int     ac;
+}t_parse;
 
 typedef struct stack_data
 {
