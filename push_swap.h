@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "./libft/libft.h"
 
 typedef struct node 
@@ -18,9 +19,8 @@ typedef struct node
 
 typedef struct s_parse_data
 {
-    int *parse_arr;
-    char    *av;
     int     ac;
+    int     *parse_arr;
 }t_parse;
 
 typedef struct stack_data

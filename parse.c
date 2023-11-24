@@ -3,6 +3,7 @@
 #include "libft/libft.h"
 #include "push_swap.h"
 #include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 int	count_white_space(char *s)
@@ -24,32 +25,31 @@ int	to_int(char c)
 	return (c - '0');
 }
 
-char	*buffer_args(int ac, char **av)
-{
-	int	i = 1;
-	int j = 0;
-	char	*buffer;
-	size_t		string_av_len;
-
-    (void) ac;
-	string_av_len = ft_strlen((char *)av[1]);
-	buffer = (char *)malloc(sizeof(char) * string_av_len);
-	if (!buffer)
-		return (NULL);
-	// struct containing stack size
-	
-	printf("stop\n");
-
-		while (av[i][j] != '\0')
-		{
-			if (av[i][j] >= '0' && av[i][j] <= '9')
-				buffer[j] = av[i][j];
-			if (av[i][j] == ' ')
-				buffer[j] = ' ';
-			j++;
-		}
-		return buffer;
-}
+// char	*buffer_args(int ac, char **av)
+// {
+// 	int	i = 1;
+// 	int j = 0;
+// 	char	*buffer;
+// 	size_t		string_av_len;
+//
+// 	string_av_len = ft_strlen((char *)av[1]);
+// 	buffer = (char *)malloc(sizeof(char) * string_av_len);
+// 	if (!buffer)
+// 		return (NULL);
+// 	// struct containing stack size
+// 	
+// 	printf("stop\n");
+//
+// 		while (av[i][j] != '\0')
+// 		{
+// 			if (av[i][j] >= '0' && av[i][j] <= '9')
+// 				buffer[j] = av[i][j];
+// 			if (av[i][j] == ' ')
+// 				buffer[j] = ' ';
+// 			j++;
+// 		}
+// 		return buffer;
+// }
 
 // int	*arr_buffer(char *buffer, int len)
 // {
@@ -100,17 +100,57 @@ int len_of_int_string(int *arr)
     return length;
 }
 
+t_parse t_parse_init(int ac, t_parse data)
+{
+    int i;
+
+    i = 0;
+    data.ac = ac;
+    data.parse_arr = (int *) malloc(sizeof(int) * ac); 
+    if (!data.parse_arr)
+        exit (1);
+    // function to free everything in place of exit
+    return (data);
+}
+
+t_parse parse_string(char **av, t_parse data)
+{
+    char    **tmp_str;
+    int i;
+    int j;
+
+    i = 0;
+    j = 1;
+    tmp_str = ft_split(av[1], ' ');
+    // printf("%s\n", tmp_str[1]);
+    while (data.parse_arr[i])
+    {
+        data.parse_arr[i] = ft_atoi((const char *)tmp_str[i]);
+        printf("%d", data.parse_arr[i]);
+        i++;
+    }
+    // printf("STOP\n===============%d", len_of_int_string(data.parse_arr));
+    // free two d array, free arr, assign null
+    free(tmp_str);
+    return (data);
+}
 int main(int ac, char **av)
 {
+    t_parse data;
     int i = 0;
-    int *parse_arr;
 
+    t_parse_init(ac, data);
+    if (ac == 2)
+        parse_string(av, data);
+    if (ac > 2)
+        return (0);
+    while (data.parse_arr[i])
+    {
 
-    // while (data[i])
-    // {
-    //
-    //     printf("%d\n", data[i]);
-    //     i++;
-    // }
+        printf("%d\n", data.parse_arr[i]);
+        i++;
+    }
+    free(data.parse_arr);
+    data.parse_arr = NULL;
     return EXIT_SUCCESS;
 }
