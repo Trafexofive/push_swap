@@ -3,6 +3,7 @@
 #include "libft/libft.h"
 #include "push_swap.h"
 #include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -100,57 +101,62 @@ int len_of_int_string(int *arr)
     return length;
 }
 
-t_parse t_parse_init(int ac, t_parse data)
+// t_parse t_parse_init(int ac, t_parse data)
+// {
+//     int i;
+//
+//     i = 0;
+//     data.ac = ac;
+//     data.parse_arr = (int *) malloc(sizeof(int) * ac + 1); 
+//     if (!data.parse_arr)
+//         exit (1);
+//     // function to free everything in place of exit
+//     return (data);
+// }
+
+int *ft_puttab(char **tab)
 {
     int i;
 
-    i = 0;
-    data.ac = ac;
-    data.parse_arr = (int *) malloc(sizeof(int) * ac); 
-    if (!data.parse_arr)
-        exit (1);
-    // function to free everything in place of exit
-    return (data);
+    i = -1;
+    if (!tab)
+        return (NULL);
+    while (tab[++i])
+        ft_printf("Index = %d | %s\n", i, tab[i]);
+    return (NULL);
 }
 
-t_parse parse_string(char **av, t_parse data)
+int *parse_string(int ac, char **av, int *data)
 {
     char    **tmp_str;
     int i;
     int j;
 
     i = 0;
-    j = 1;
     tmp_str = ft_split(av[1], ' ');
+
+    ft_puttab(tmp_str);
+    data = (int *) malloc(sizeof(int) * ac + 1); 
+    if (!data)
+        exit (1);
     // printf("%s\n", tmp_str[1]);
-    while (data.parse_arr[i])
+    while (i + 1 < ac)
     {
-        data.parse_arr[i] = ft_atoi((const char *)tmp_str[i]);
-        printf("%d", data.parse_arr[i]);
+        data[i] = ft_atoi(tmp_str[i]);
         i++;
     }
     // printf("STOP\n===============%d", len_of_int_string(data.parse_arr));
     // free two d array, free arr, assign null
-    free(tmp_str);
     return (data);
 }
 int main(int ac, char **av)
 {
-    t_parse data;
+    int *data;
     int i = 0;
 
-    t_parse_init(ac, data);
     if (ac == 2)
-        parse_string(av, data);
+        parse_string(ac, av, data);
     if (ac > 2)
         return (0);
-    while (data.parse_arr[i])
-    {
-
-        printf("%d\n", data.parse_arr[i]);
-        i++;
-    }
-    free(data.parse_arr);
-    data.parse_arr = NULL;
     return EXIT_SUCCESS;
 }

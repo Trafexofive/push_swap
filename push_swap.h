@@ -8,6 +8,15 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "./libft/libft.h"
+#include "libft_printf/ft_printf.h"
+
+/***************** Macros ***************/
+
+
+
+
+
+/***************** Structs **************/
 
 typedef struct node 
 {
@@ -17,18 +26,13 @@ typedef struct node
 	struct node *next;
 }t_node;
 
-typedef struct s_parse_data
-{
-    int     ac;
-    int     *parse_arr;
-}t_parse;
-
 typedef struct stack_data
 {
 	int	*sa_data;
 	int	*sb_data;
 }t_data;
 
+/**************** Declaration ***************/
 
 void freeLinkedList(t_node *head);
 
