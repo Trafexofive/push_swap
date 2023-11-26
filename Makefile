@@ -1,24 +1,37 @@
 
-CFLAGS := -Wall -Wextra -Werror
-NAME := push_swap
-SRC := ./push_swap.c ./utils.c
-OBJ := $(SRC:.c=.o)
-HEADERS := push_swap.h ./libft/libft.h
-RM := rm -rf
 CC := cc
 
-all : $(NAME)
+NAME	:= push_swap.c
 
-%.o : %.c 
-	$(CC) $(CFLAGS) $^ -o $%
-push :
-	git add .
-	git commit -m "fast commit"
-	git push
-clean : 
-	$(RM) $(OBJ)
-fclean :
-	$(RM) $(NAME)
-re : fclean all
+CFLAGS	:= -Wextra -Wall -Werror 
 
-.PHONY : clean fclean re all
+SRCS	:= ./parse.c ./utils.c ./stack_operations.c
+
+LIBFT := libft/libft.a
+
+PRINTF := printf/libftprinf.a
+
+OBJS	:= ${SRCS:.c=.o}
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
+
+lib : 
+	make -C ./libft && make -C ./printf
+
+%.o: %.c $(HEADERS) | lib
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	make clean -C ./libft
+	rm -rf $(OBJS)
+
+fclean: clean
+	make fclean -C ./libft
+	rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all, lib, clean, fclean, re

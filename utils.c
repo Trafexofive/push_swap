@@ -1,6 +1,4 @@
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "push_swap.h"
 
 // Define a structure for a node in the linked list

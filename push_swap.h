@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "./libft/libft.h"
-#include "libft_printf/ft_printf.h"
+#include "printf/ft_printf.h"
 
 /***************** Macros ***************/
 

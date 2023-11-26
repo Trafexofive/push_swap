@@ -2,12 +2,11 @@
 
 #include "libft/libft.h"
 #include "push_swap.h"
+#include <stdbool.h>
 #include <stddef.h>
-#include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
 
-int	count_white_space(char *s)
+int	count_space(char *s)
 {
 	int i = 0;
 	int j = 0;
@@ -91,7 +90,7 @@ size_t	ft_strlen_int(int *c)
 	return (i);
 }
 
-int len_of_int_string(int *arr)
+int arr_len(int *arr)
 {
     int length = 0;
     while (*arr) {
@@ -126,6 +125,9 @@ int *ft_puttab(char **tab)
     return (NULL);
 }
 
+//function to auto_print sizeof;
+
+
 int *parse_string(int ac, char **av, int *data)
 {
     char    **tmp_str;
@@ -135,7 +137,6 @@ int *parse_string(int ac, char **av, int *data)
     i = 0;
     tmp_str = ft_split(av[1], ' ');
 
-    ft_puttab(tmp_str);
     data = (int *) malloc(sizeof(int) * ac + 1); 
     if (!data)
         exit (1);
@@ -144,6 +145,7 @@ int *parse_string(int ac, char **av, int *data)
     {
         data[i] = ft_atoi(tmp_str[i]);
         i++;
+        ft_printf("%d", data[i]);
     }
     // printf("STOP\n===============%d", len_of_int_string(data.parse_arr));
     // free two d array, free arr, assign null
