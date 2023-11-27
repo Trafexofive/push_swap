@@ -1,10 +1,6 @@
 
 
-// clone intra libft
 #include "push_swap.h"
-
-//function that will fill the stack a from argv
-//
 
 
 
@@ -56,28 +52,37 @@ t_node	*create_stack(int size, t_node *head, int debug, int *arr_args)
 
 
 
+int *ft_parse(int ac, char **av)
+{
+    int *data;
+
+    data = 0;
+    if (ac == 2)
+        data = parse_string(ac, av, data);
+    else if (ac > 2)
+        data = parse_multi(ac, av, data);
+    else
+     return (NULL);
+
+    put_intarr(data);
+    return (data);
+    return EXIT_SUCCESS;
+}
+
 int main(int ac, char **av)
 {
-	t_node	*head;
-	t_node	*top_sa;
-	t_node	*top_sb;
-	char	*buffer;
+	// t_node	*head;
+	// t_node	*top_sa;
+	// t_node	*top_sb;
 	int		*arr;
-	size_t	buffer_len;
 
-	buffer = buffer_args(ac, av);
-	buffer_len = ft_strlen(buffer);
-	printf("buffer len --> %zu\n", buffer_len);
-	arr = arr_buffer(buffer, buffer_len);
-	printf("buffer --> %s\n", buffer);
-	free(buffer);
+	arr = ft_parse(ac, av);
 
 
-
-	top_sa = init_stack();
-	top_sa = create_stack(buffer_len - count_white_space(buffer), top_sa, 1, arr);
+	// top_sa = init_stack();
+	// top_sa = create_stack(buffer_len - count_white_space(buffer), top_sa, 1, arr);
 	free(arr);
-	freeLinkedList(top_sa);
+	// freeLinkedList(top_sa);
 	
 
 

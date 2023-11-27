@@ -23,12 +23,20 @@ typedef struct node
 
 typedef struct stack_data
 {
-	int	*sa_data;
-	int	*sb_data;
+	t_node  *sa_data;
+	t_node  *sb_data;
 }t_data;
 
 /**************** Declaration ***************/
 
 void freeLinkedList(t_node *head);
+int put_intarr(int *tab);
 
+/*-------------- Parsing --------------------*/
+int *parse_multi(int ac, char **av, int *data);
+int *parse_string(int ac, char **av, int *data);
+int *ft_parse(int ac, char **av);
+bool    is_duped(int *arr);
+
+/*-------------- mandatory --------------------*/
 #endif

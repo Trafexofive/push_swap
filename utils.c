@@ -39,7 +39,7 @@ void traverseLinkedList(t_node* head)
 }
 
 // Function to free the memory used by the linked list
-void freeLinkedList(t_node* head)
+void free_stack(t_node* head)
 {
     t_node* current = head;
     while (current != NULL)
@@ -50,3 +50,83 @@ void freeLinkedList(t_node* head)
     }
 }
 
+
+
+size_t	ft_strlen_int(int *c)
+{
+	size_t	i;
+
+	i = 0;
+	while (c[i])
+		i++;
+	return (i);
+}
+
+int put_intarr(int *tab)
+{
+    int i;
+
+    i = 0;
+    if (!tab)
+        return (0);
+    while (tab[i++])
+    {
+        if (!tab[i])
+            break;
+        ft_printf("Index = %d | %d\n", i, tab[i]);
+
+    }
+    return (i);
+}
+
+int ft_puttab(char **tab)
+{
+    int i;
+
+    i = -1;
+    if (!tab)
+        return (0);
+    while (tab[++i])
+        ft_printf("Index = %d | %s\n", i, tab[i]);
+    return (i);
+}
+
+//function to auto_print sizeof;
+int *strdup_int(int *arr)
+{
+    int i;
+    int *dupe;
+
+    i = -1;
+    if (!arr)
+        return (NULL);
+    dupe = (int *)malloc(sizeof(arr)); 
+    if (!dupe)
+        return (NULL);
+    while (arr[++i])
+        dupe[i] = arr[i];
+    return (dupe);
+}
+
+bool    is_duped(int *arr)
+{
+    int i;
+    int j;
+    int *tmp_str;
+
+    i = 0;
+    j = 0;
+    tmp_str = strdup_int(arr);
+    while (arr[i] && tmp_str)
+    {
+        while (tmp_str[j])
+        {
+            if (tmp_str[j] == arr[i])
+                return (0);
+            j++;
+        }
+        j = 0;
+        i++;
+    }
+    return (0);
+}
