@@ -4,8 +4,8 @@
 // Define a structure for a node in the linked list
 
 // Function to create a new node with the given data
-t_node* createNode(int data)
-{
+t_node  *create_node(int data)
+    {
     t_node* newNode = (t_node*)malloc(sizeof(t_node));
     newNode->data = data;
     newNode->next = NULL;
@@ -15,7 +15,7 @@ t_node* createNode(int data)
 // Function to insert a new node at the end of the linked list
 void insertAtEnd(t_node** head, int data)
 {
-    t_node* newNode = createNode(data);
+    t_node* newNode = create_node(data);
     if (*head == NULL)
         *head = newNode;
 	else
@@ -32,7 +32,7 @@ void traverseLinkedList(t_node* head)
 {
     t_node* current = head;
     while (current != NULL)	{
-        printf("%d -> ", current->data);
+        ft_printf("%d -> ", current->data);
         current = current->next;
     }
     printf("NULL\n");
@@ -49,8 +49,6 @@ void free_stack(t_node* head)
         free(temp);
     }
 }
-
-
 
 size_t	ft_strlen_int(int *c)
 {

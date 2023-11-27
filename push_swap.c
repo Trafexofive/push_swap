@@ -1,88 +1,60 @@
-
+// fill the stack from the arr,
 
 #include "push_swap.h"
 
-
-
-t_node	*init_stack(void)
-{
-	t_node	*head;
-
-	head = (t_node *)malloc(sizeof(t_node));
-	if (!head)
-		return (NULL);
-	head->data = 0;
-	head->next = NULL;
-	return (head);
-}
-
-t_node	*link_node(t_node *node, int value)
-{
-	t_node	*new_node;
-
-	new_node = (t_node *)malloc(sizeof(t_node));
-	node->next = new_node;
-	new_node->data = value;
-	new_node->next = NULL;
-	return(new_node);
-}
-
 //void	print_node(int index, node_t head)
 
-t_node	*create_stack(int size, t_node *head, int debug, int *arr_args)
+t_node  *fill_node(t_node *head, int data)
 {
-	int i = 0;
-	t_node	*current_node;
+    t_node  *new_node;
+    t_node  *last_node;
+    
+    new_node = create_node(data);
+    last_node = head->next;
+    if (head == NULL)
+        head->next = new_node;// last-node
+    else
+        last_node->next = new_node;
+    head->next = new_node;
 
-	current_node = NULL;
-	head = init_stack();
-	if (head == NULL)
-		return NULL;
-	
-	while (i < size)
+
+
+    return (new_node);
+}
+
+t_node	*create_stack(int len, int debug, int *arr)
+{
+    t_node  *head;
+	int i = 0;
+
+	head = NULL;
+	while (i != len)
 	{
-		current_node = link_node(head, arr_args[i]); 
+		head = fill_node(head, arr[i]); 
 		if (debug == 1)
-			printf("%d\n", current_node->data);
+			printf("%d\n", head->data);
 		i++;
 	}
 	return (head);
-
 }
 
 
 
-int *ft_parse(int ac, char **av)
-{
-    int *data;
-
-    data = 0;
-    if (ac == 2)
-        data = parse_string(ac, av, data);
-    else if (ac > 2)
-        data = parse_multi(ac, av, data);
-    else
-     return (NULL);
-
-    put_intarr(data);
-    return (data);
-    return EXIT_SUCCESS;
-}
 
 int main(int ac, char **av)
 {
-	// t_node	*head;
+	t_node	*head;
 	// t_node	*top_sa;
 	// t_node	*top_sb;
-	int		*arr;
+	int		*data;
 
-	arr = ft_parse(ac, av);
+    data = 0;
+    head = create_stack(ac - 2, 0, data);
+	data = ft_parse(ac, av, data);
 
-
-	// top_sa = init_stack();
-	// top_sa = create_stack(buffer_len - count_white_space(buffer), top_sa, 1, arr);
-	free(arr);
-	// freeLinkedList(top_sa);
+    traverseLinkedList(head);
+	free(data);
+	freeLinkedList(head);
 	
 
 
