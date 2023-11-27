@@ -1,7 +1,7 @@
 
 CC := cc
 
-NAME	:= push_swap.c
+NAME	:= push_swap
 
 CFLAGS	:= -Wextra -Wall -Werror 
 
@@ -9,7 +9,7 @@ SRCS	:= ./parse.c ./utils.c ./stack_operations.c
 
 LIBFT := libft/libft.a
 
-PRINTF := printf/libftprinf.a
+PRINTF := printf/libftprintf.a
 
 OBJS	:= ${SRCS:.c=.o}
 
@@ -26,10 +26,12 @@ lib :
 
 clean:
 	make clean -C ./libft
+	make clean -C ./printf
 	rm -rf $(OBJS)
 
 fclean: clean
 	make fclean -C ./libft
+	make fclean -C ./printf
 	rm -rf $(NAME)
 
 re: fclean all

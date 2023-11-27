@@ -1,9 +1,11 @@
 
+
 // clone intra libft
 #include "push_swap.h"
 
 //function that will fill the stack a from argv
 //
+
 
 
 t_node	*init_stack(void)
