@@ -5,11 +5,14 @@
 
 // Function to create a new node with the given data
 t_node  *create_node(int data)
-    {
-    t_node* newNode = (t_node*)malloc(sizeof(t_node));
-    newNode->data = data;
-    newNode->next = NULL;
-    return newNode;
+{
+    t_node* new_node;
+
+    new_node = (t_node*)malloc(sizeof(t_node));
+    new_node->data = data;
+    new_node->next = NULL;
+    new_node->prev= NULL;
+    return new_node;
 }
 
 // Function to insert a new node at the end of the linked list

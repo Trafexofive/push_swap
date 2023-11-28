@@ -18,6 +18,7 @@ typedef struct node
 	int				data;
     unsigned int    last;
     struct node     *top;
+    struct node     *prev;
 	struct node *next;
 }t_node;
 
