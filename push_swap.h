@@ -31,7 +31,7 @@ typedef t_node head;
 
 /**************** Declaration ***************/
 
-void freeLinkedList(t_node *head);
+void fr(t_node *head);
 int put_intarr(int *tab);
 void traverseLinkedList(t_node* head);
 
