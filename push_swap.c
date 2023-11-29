@@ -28,19 +28,19 @@ t_node  *fill_node(int data, t_head *head)
 
 t_node *create_stack(int len, int *arr,t_head *head)
 {
-    t_node  *first_node; //tmp node
+    t_node  *tmp; //tmp node
 	int i = 0;
 
-    first_node = 0;
+    tmp = 0;
 	while (arr)
 	{
         if (i == len)
             break;
-		first_node = fill_node(arr[i], head); 
+		tmp = fill_node(arr[i], head); 
 		i++;
 	}
-	first_node->next = NULL;
-	return (first_node);
+	tmp->next = NULL;
+	return (tmp);
     //return the last node aka, always the tail
 }
 
@@ -67,10 +67,10 @@ int main(int ac, char **av)
     stack_b->bottom = create_stack(4, arr, stack_b);
     // pop_last(stack_b);
     // pop_last(stack_a);
-    // swap(stack_a);
+    swap(stack_a);
 
-    push(stack_a, stack_b, 'a');
-    push(stack_a, stack_b, 'a');
+    // push(stack_a, stack_b, 'a');
+    // push(stack_a, stack_b, 'a');
 
     print_stacks(stack_a, stack_b);
 	free(data);

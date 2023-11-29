@@ -45,7 +45,7 @@ void    swap(t_head *stack)
     next->next = top;
     top->prev = next;
     next->prev = NULL;
-	stack->top = next;
+	top = next;
 	top->next->prev = top;
 
 }
