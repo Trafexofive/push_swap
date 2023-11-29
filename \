@@ -29,19 +29,18 @@ typedef struct s_head
     struct node     *bottom;
 }t_head;
 
+typedef struct stack_data
+{
+	t_node  *sa_data;
+	t_node  *sb_data;
+}t_data;
 
 
 /**************** Declaration ***************/
 
-void free_stack(t_head *head);
+void fr(t_node *head);
 int put_intarr(int *tab);
-void print_stacks(t_head* stack_a, t_head *stack_b);
-size_t	ft_strlen_int(int *c);
-void    swap(t_head *stack);
-t_node  *fill_node(int data, t_head *head);
-void    pop(t_head *stack, unsigned int index);
-void    pop_last(t_head *stack);
-void    push(t_head *stack_a, t_head *stack_b, char option);
+void traverseLinkedList(t_node* head);
 
 /*-------------- Parsing --------------------*/
 int *parse_multi(int ac, char **av, int *data);

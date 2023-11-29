@@ -1,8 +1,6 @@
 
 
 #include "./push_swap.h"
-#include "libft/libft.h"
-#include "printf/ft_printf.h"
 
 int *parse_string(int ac, char **av, int *data)
 {
@@ -16,7 +14,6 @@ int *parse_string(int ac, char **av, int *data)
     while (tmp_str[i])
         len = i++;
     data = (int *) malloc(sizeof(int) * ac - 2); 
-    ft_printf("len = %d\n", len);
     if (!data)
         exit (1);
     i = 0;
@@ -41,8 +38,6 @@ int *parse_multi(int ac, char **av, int *data)
 
     len = ac;
     data = (int *)malloc((ac - 2) * sizeof(int));
-    ft_putnbr_fd(ac - 2, 1);
-    ft_putchar_fd('\n', 1);
     if (!data)
         return (NULL);
     j = 1;
@@ -64,6 +59,6 @@ int *ft_parse(int ac, char **av, int *data)
     else if (ac == 2)
         data = parse_string(ac, av, data);
     else
-     return (NULL);
+        return (NULL);
     return (data);
 }
