@@ -1,4 +1,5 @@
 
+#include "printf/ft_printf.h"
 #include "push_swap.h"
 #include <stdlib.h>
 
@@ -15,6 +16,8 @@ void    pop_last(t_head *stack)
 void    pop(t_head *stack, unsigned int index)
 {
     
+    // top and bottom pop behavior unsure.
+    // unsafe to use. recode
     t_node* current = stack->top;
     t_node  *tmp;
     while (current != NULL && index > 0)
@@ -25,7 +28,7 @@ void    pop(t_head *stack, unsigned int index)
     tmp = current->prev;
     current->prev = current->next->prev;
     current->next = tmp->next;
-    // free(current);
+    free(current);
 }
 
 void    swap(t_head *stack)
@@ -33,9 +36,9 @@ void    swap(t_head *stack)
     t_node  *next;
     t_node  *top;
 
+    // The stack is empty or has only one element, nothing to swap
 	if (stack == NULL || stack->top == NULL || stack->top->next == NULL)
     {
-        // The stack is empty or has only one element, nothing to swap
         return;
     }
     top = stack->top;
@@ -93,3 +96,7 @@ void    push(t_head *stack_a, t_head *stack_b, char option)
     }
 }
 
+// void    rotate(t_head *stack)
+// {
+//
+// }

@@ -27,6 +27,7 @@ typedef struct s_head
     struct node     *top;
     struct node     *current;
     struct node     *bottom;
+    unsigned int    *stack_len;
 }t_head;
 
 

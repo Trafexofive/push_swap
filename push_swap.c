@@ -67,9 +67,13 @@ int main(int ac, char **av)
     stack_b->bottom = create_stack(4, arr, stack_b);
     // pop_last(stack_b);
     // pop_last(stack_a);
-    swap(stack_a);
+    // swap(stack_a);
 
-    // push(stack_a, stack_b, 'a');
+    push(stack_a, stack_b, 'a');
+    push(stack_a, stack_b, 'a');
+    push(stack_a, stack_b, 'a');
+    push(stack_a, stack_b, 'a');
+    push(stack_a, stack_b, 'a');
     // push(stack_a, stack_b, 'a');
 
     print_stacks(stack_a, stack_b);
