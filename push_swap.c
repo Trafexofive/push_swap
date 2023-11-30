@@ -62,6 +62,9 @@ int main(int ac, char **av)
     stack_a = (t_head *) ft_calloc(1, sizeof(t_head));
     stack_b = (t_head *) ft_calloc(1, sizeof(t_head));
 
+    stack_a->name = 'a';
+    stack_b->name = 'b';
+
 	stack_a->top = NULL;
 	stack_b->top = NULL;
 

@@ -110,22 +110,28 @@ void    rotate(t_head *stack)
     top_node = stack->top;
     bottom_node = stack->bottom;
     top_next_node = stack->top->next;
-
     bottom_node->next = stack->top;
-    //swaping
-    
     top_node->prev = bottom_node;
     top_node->next = NULL;
-
     top_next_node->prev = NULL;
     stack->top = top_next_node;
     stack->bottom = top_node;
+    if (stack->name == 'a')
+        ft_printf("ra\n");
+    if (stack->name == 'b')
+        ft_printf("rb\n");
     //update
     
 }
 
 //reverse rotate;
 
+void    reverse_rotate(t_head *stack)
+{
+
+
+
+}
 
 
 
