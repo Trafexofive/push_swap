@@ -4,3 +4,4 @@
     -develop more tools to aid in the project
     -debug and clean up the code.
     - parse needs to be completed first
+## algo based on https://www.canva.com/design/DAFT0H-P8r0/m8a-jnZvfrUZy-dnBEUENQ/view#11 
