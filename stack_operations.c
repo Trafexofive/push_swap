@@ -1,8 +1,5 @@
 
-#include "printf/ft_printf.h"
 #include "push_swap.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 void    pop_last(t_head *stack)
 {
@@ -67,13 +64,14 @@ void	sb(t_head *stack_b)
 
 void    push(t_head *stack_a, t_head *stack_b, char option)
 {
+    //split it up.
     t_node  *node;
     t_node  *top_a;
     t_node  *top_b;
 
     node = create_node(stack_a->top->data);
-        top_a= stack_a->top;
-        top_b= stack_b->top;
+    top_a= stack_a->top;
+    top_b= stack_b->top;
     if (!node)
         return ;
     if (option == 'a')
@@ -119,11 +117,13 @@ void    rotate(t_head *stack)
         ft_printf("ra\n");
     if (stack->name == 'b')
         ft_printf("rb\n");
-    //update
-    
 }
 
-//reverse rotate;
+void    rr(t_head *stack_a, t_head *stack_b)
+{
+    rotate(stack_a);
+    rotate(stack_b);
+}
 
 void    reverse_rotate(t_head *stack)
 {
@@ -150,5 +150,9 @@ void    reverse_rotate(t_head *stack)
         ft_printf("rrb\n");
 }
 
-
+void    rrr(t_head *stack_a, t_head *stack_b)
+{
+    reverse_rotate(stack_a);
+    reverse_rotate(stack_b);
+}
 

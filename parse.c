@@ -15,7 +15,7 @@ int *parse_string(int ac, char **av, int *data)
         len = i++;
     data = (int *) malloc(sizeof(int) * ac - 2); 
     if (!data)
-        exit (1);
+        return (NULL);
     i = 0;
     while (1)
     {
