@@ -100,9 +100,7 @@ void    push(t_head *stack_a, t_head *stack_b, char option)
 
 void    rotate(t_head *stack)
 {
-    //The first element becomes the last one
     //protect
-    
     t_node  *top_node;
     t_node  *bottom_node;
     t_node  *top_next_node;
@@ -110,7 +108,8 @@ void    rotate(t_head *stack)
     top_node = stack->top;
     bottom_node = stack->bottom;
     top_next_node = stack->top->next;
-    bottom_node->next = stack->top;
+
+    bottom_node->next = top_node;
     top_node->prev = bottom_node;
     top_node->next = NULL;
     top_next_node->prev = NULL;
@@ -128,9 +127,27 @@ void    rotate(t_head *stack)
 
 void    reverse_rotate(t_head *stack)
 {
+    //The last element becomes the first one.
+
+    t_node  *top_node;
+    t_node  *bottom_node;
+    t_node  *bottom_prev_node;
 
 
+    top_node = stack->top;
+    bottom_node = stack->bottom;
+    bottom_prev_node = bottom_node->prev;
 
+    bottom_node->prev = NULL;
+    bottom_node->next = top_node;
+    bottom_prev_node->next = NULL;
+    stack->bottom = bottom_prev_node;
+    stack->top = bottom_node;
+    
+    if (stack->name == 'a')
+        ft_printf("rra\n");
+    if (stack->name == 'b')
+        ft_printf("rrb\n");
 }
 
 

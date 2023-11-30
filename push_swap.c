@@ -77,7 +77,12 @@ int main(int ac, char **av)
     rotate(stack_a);
     rotate(stack_a);
     rotate(stack_a);
+    
     // ft_printf("node data ====>%d\n", stack_a->bottom->data);
+    reverse_rotate(stack_a);
+    reverse_rotate(stack_a);
+    reverse_rotate(stack_a);
+    reverse_rotate(stack_a);
     // pop_last(stack_b);
     // pop_last(stack_a);
     // swap(stack_a);
