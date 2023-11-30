@@ -1,5 +1,6 @@
 
 #include "push_swap.h"
+#include <stdbool.h>
 
 void    pop_last(t_head *stack)
 {
@@ -133,7 +134,6 @@ void    reverse_rotate(t_head *stack)
     t_node  *bottom_node;
     t_node  *bottom_prev_node;
 
-
     top_node = stack->top;
     bottom_node = stack->bottom;
     bottom_prev_node = bottom_node->prev;
@@ -156,3 +156,7 @@ void    rrr(t_head *stack_a, t_head *stack_b)
     reverse_rotate(stack_b);
 }
 
+// bool    is_sort(t_head *stack)
+// {
+//
+// }

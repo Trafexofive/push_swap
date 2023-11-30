@@ -13,6 +13,8 @@ t_node  *fill_node(int data, t_head *head)
     if (head->top == NULL)
     {
         new_node = create_node(data);
+        new_node->index = 0;
+        head->stack_len = 0;
         head->top = new_node;
         head->current = new_node;
     }
@@ -22,16 +24,19 @@ t_node  *fill_node(int data, t_head *head)
         new_node->prev = head->current;
         head->current->next = new_node;
         head->current = new_node;
+        head->stack_len++;
+        new_node->index = head->stack_len;
     }
     return (new_node);
 }
 
 t_node *create_stack(int len, int *arr,t_head *head)
 {
-    t_node  *tmp; //tmp node
+    t_node  *tmp; 
 	int i = 0;
 
     tmp = 0;
+    head->stack_len = 0;
 	while (arr)
 	{
         if (i == len)
@@ -72,12 +77,10 @@ int main(int ac, char **av)
     stack_b->bottom = create_stack(4, arr, stack_b);
 
 
-
-    // rotate(stack_a);
+    rotate(stack_a);
     
     // ft_printf("node data ====>%d\n", stack_a->bottom->data);
     // reverse_rotate(stack_a);
-    pop_last(stack_b);
     // pop_last(stack_a);
     // swap(stack_a);
 

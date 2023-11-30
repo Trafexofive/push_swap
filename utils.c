@@ -32,22 +32,22 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
         if (current_b == stack_b->bottom)
             break;
         if (current_b->next)
-            ft_printf("%d-> ", current_b->data);
+            ft_printf("%d %d\n", current_b->index, current_b->data);
         current_b = current_b->next;
     }
     if (current_b == stack_b->bottom)
-        ft_printf("%d | Bottom Reached\n\n", current_b->data);
+        ft_printf("%d %d| Bottom Reached\n\n", current_b->index, current_b->data);
     ft_printf("Stack B :\n");
     while (current_a != NULL) 
     {
         if (current_a == stack_a->bottom)
             break;
         if (current_a->next && stack_a->bottom != current_a)
-            ft_printf("%d -> ", current_a->data);
+            ft_printf("%d %d\n", current_a->index, current_a->data);
         current_a = current_a->next;
     }
     if (current_a == stack_a->bottom)
-        ft_printf("%d | Bottom Reached\n", current_a->data);
+        ft_printf("%d @index : %d| Bottom Reached\n", current_a->index, current_a->data);
     // ft_printf("NULL\n");
 }
 

@@ -20,6 +20,7 @@ typedef struct node
 	int				data;
     struct node     *prev;
 	struct node     *next;
+    unsigned int    index;
 }t_node;
 
 typedef struct s_head
@@ -27,7 +28,7 @@ typedef struct s_head
     struct node     *top;
     struct node     *current;
     struct node     *bottom;
-    unsigned int    *stack_len;
+    unsigned int    stack_len;
     char            name;
 }t_head;
 
