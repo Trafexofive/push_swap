@@ -68,12 +68,9 @@ int main(int ac, char **av)
     // pop_last(stack_b);
     // pop_last(stack_a);
     // swap(stack_a);
+    rotate(stack_a);
 
-    push(stack_a, stack_b, 'a');
-    push(stack_a, stack_b, 'a');
-    push(stack_a, stack_b, 'a');
-    push(stack_a, stack_b, 'a');
-    push(stack_a, stack_b, 'a');
+    // push(stack_a, stack_b, 'a');
     // push(stack_a, stack_b, 'a');
 
     print_stacks(stack_a, stack_b);

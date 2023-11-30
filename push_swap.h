@@ -35,6 +35,7 @@ typedef struct s_head
 /**************** Declaration ***************/
 
 void free_stack(t_head *head);
+void    rotate(t_head *stack);
 int put_intarr(int *tab);
 void print_stacks(t_head* stack_a, t_head *stack_b);
 size_t	ft_strlen_int(int *c);

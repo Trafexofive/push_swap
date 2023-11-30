@@ -38,6 +38,7 @@ int *parse_multi(int ac, char **av, int *data)
 
     len = ac;
     data = (int *)malloc((ac - 2) * sizeof(int));
+    i = 0;
     if (!data)
         return (NULL);
     j = 1;

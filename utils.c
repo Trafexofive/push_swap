@@ -35,6 +35,7 @@ void insertAtEnd(t_node** head, int data)
 
 // Function to traverse and print the linked list
 void    print_stacks(t_head *stack_a, t_head *stack_b)
+//reminder to change for index print support
 {
     t_node* current_a = stack_a->top;
     t_node* current_b = stack_b->top;

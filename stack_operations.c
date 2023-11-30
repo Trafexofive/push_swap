@@ -1,6 +1,7 @@
 
 #include "printf/ft_printf.h"
 #include "push_swap.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 void    pop_last(t_head *stack)
@@ -26,6 +27,7 @@ void    pop(t_head *stack, unsigned int index)
         index--;
     }
     tmp = current->prev;
+    // logical problem
     current->prev = current->next->prev;
     current->next = tmp->next;
     free(current);
@@ -96,7 +98,31 @@ void    push(t_head *stack_a, t_head *stack_b, char option)
     }
 }
 
-// void    rotate(t_head *stack)
-// {
-//
-// }
+void    rotate(t_head *stack )
+{
+   //The first element becomes the last one 
+    
+    t_node  *top_node;
+    t_node  *bottom_node;
+    t_node  *top_next_node;
+
+    top_node = stack->top;
+    bottom_node = stack->bottom;
+    top_next_node = stack->top->next;
+
+    bottom_node->next = top_node;
+    //swaping
+    
+    top_node->prev = bottom_node;
+    top_node->next = NULL;
+
+    top_next_node->prev = NULL;
+    stack->top = top_next_node;
+    stack->bottom = top_node;
+    //update
+    
+}
+
+
+
+
