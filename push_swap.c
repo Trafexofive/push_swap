@@ -69,7 +69,7 @@ int main(int ac, char **av)
 	stack_b->top = NULL;
 
     stack_a->bottom = create_stack(ac , data, stack_a);
-    stack_b->bottom = create_stack(5, arr, stack_b);
+    stack_b->bottom = create_stack(4, arr, stack_b);
 
 
 

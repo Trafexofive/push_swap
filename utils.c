@@ -18,20 +18,6 @@ t_node  *create_node(int data)
     return new_node;
 }
 
-// Function to insert a new node at the end of the linked list
-void insertAtEnd(t_node** head, int data)
-{
-    t_node* newNode = create_node(data);
-    if (*head == NULL)
-        *head = newNode;
-	else
-	{
-        t_node* current = *head;
-        while (current->next != NULL)
-            current = current->next;
-        current->next = newNode;
-    }
-}
 
 // Function to traverse and print the linked list
 void    print_stacks(t_head *stack_a, t_head *stack_b)
@@ -39,14 +25,19 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
 {
     t_node* current_a = stack_a->top;
     t_node* current_b = stack_b->top;
+
+    ft_printf("\nStack A :\n");
     while (current_b != NULL)
     {
         if (current_b == stack_b->bottom)
             break;
         if (current_b->next)
-            ft_printf(" | <- %d\n", current_b->data);
+            ft_printf("%d-> ", current_b->data);
         current_b = current_b->next;
     }
+    if (current_b == stack_b->bottom)
+        ft_printf("%d | Bottom Reached\n\n", current_b->data);
+    ft_printf("Stack B :\n");
     while (current_a != NULL) 
     {
         if (current_a == stack_a->bottom)
