@@ -36,7 +36,6 @@ t_node *create_stack(int len, int *arr,t_head *head)
 	int i = 0;
 
     tmp = 0;
-    head->stack_len = 0;
 	while (arr)
 	{
         if (i == len)
@@ -61,6 +60,7 @@ int main(int ac, char **av)
     t_head      *stack_b;
 	int	        *data;
     int         arr[3] = {1, 4, 6};
+    int         sort;
 
     data = 0;
 	data = ft_parse(ac, av, data);
@@ -70,6 +70,9 @@ int main(int ac, char **av)
     stack_a->name = 'a';
     stack_b->name = 'b';
 
+    stack_a->stack_len = 0;
+    stack_b->stack_len = 0;
+
 	stack_a->top = NULL;
 	stack_b->top = NULL;
 
@@ -77,13 +80,15 @@ int main(int ac, char **av)
     stack_b->bottom = create_stack(4, arr, stack_b);
 
 
-    rotate(stack_a);
+    // rotate(stack_a);
     
     // ft_printf("node data ====>%d\n", stack_a->bottom->data);
     // reverse_rotate(stack_a);
     // pop_last(stack_a);
-    // swap(stack_a);
+    swap(stack_b);
 
+    sort = is_sort(stack_a);
+    ft_putnbr_fd(sort, 1);
     // push(stack_a, stack_b, 'a');
     // push(stack_a, stack_b, 'a');
 

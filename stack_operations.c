@@ -1,4 +1,5 @@
 
+#include "printf/ft_printf.h"
 #include "push_swap.h"
 #include <stdbool.h>
 
@@ -17,8 +18,10 @@ void    pop(t_head *stack, unsigned int index)
     
     // top and bottom pop behavior unsure.
     // unsafe to use. recode
-    t_node* current = stack->top;
+    t_node* current;
     t_node  *tmp;
+
+    current = stack->top;
     while (current != NULL && index > 0)
 	{   
         current = current->next;
@@ -33,34 +36,34 @@ void    pop(t_head *stack, unsigned int index)
 
 void    swap(t_head *stack)
 {
-    t_node  *next;
-    t_node  *top;
+    t_node  *top_next_node;
+    t_node  *top_node;
 
+
+    top_node = stack->top;
+    top_next_node = stack->top->next;
     // The stack is empty or has only one element, nothing to swap
 	if (stack == NULL || stack->top == NULL || stack->top->next == NULL)
-    {
         return;
-    }
-    top = stack->top;
-    next = top->next;
 
-    top->next = next->next;
-    next->next = top;
-    top->prev = next;
-    next->prev = NULL;
-	top = next;
-	top->next->prev = top;
+    top_node->next = top_next_node->next;
+    top_node->prev = top_next_node;
+    top_next_node->prev = NULL;
+    top_next_node->next = top_node;
+    stack->top = top_next_node;
 
 }
 
 void	sa(t_head *stack_a)
 {
 	swap(stack_a);
+    ft_printf("sa\n");
 }
 
 void	sb(t_head *stack_b)
 {
 	swap(stack_b);
+    ft_printf("sb\n");
 }
 
 void    push(t_head *stack_a, t_head *stack_b, char option)
@@ -156,7 +159,15 @@ void    rrr(t_head *stack_a, t_head *stack_b)
     reverse_rotate(stack_b);
 }
 
-// bool    is_sort(t_head *stack)
-// {
-//
-// }
+bool    is_sort(t_head *stack)
+{
+    t_node  *current;
+
+    current = stack->top;
+    while (current != stack->bottom && current->next->data > current->data)
+        current = current->next;
+    if (current == stack->bottom)
+        return (TRUE);
+    return (FALSE);
+
+}

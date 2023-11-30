@@ -10,6 +10,8 @@ int *parse_string(int ac, char **av, int *data)
 
     i = 0;
     tmp_str = ft_split(av[1], ' ');
+    if (tmp_str == NULL)
+        return (NULL);
 
     while (tmp_str[i])
         len = i++;
