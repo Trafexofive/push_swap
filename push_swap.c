@@ -39,7 +39,9 @@ t_node *create_stack(int len, int *arr,t_head *head)
 		tmp = fill_node(arr[i], head); 
 		i++;
 	}
+    tmp = tmp->prev;
 	tmp->next = NULL;
+    head->bottom = tmp;
 	return (tmp);
     //return the last node aka, always the tail
 }
@@ -64,11 +66,18 @@ int main(int ac, char **av)
 	stack_b->top = NULL;
 
     stack_a->bottom = create_stack(ac , data, stack_a);
-    stack_b->bottom = create_stack(4, arr, stack_b);
+    stack_b->bottom = create_stack(5, arr, stack_b);
+
+
+
+    rotate(stack_a);
+    rotate(stack_a);
+    rotate(stack_a);
+    rotate(stack_a);
+    // ft_printf("node data ====>%d\n", stack_a->bottom->data);
     // pop_last(stack_b);
     // pop_last(stack_a);
     // swap(stack_a);
-    rotate(stack_a);
 
     // push(stack_a, stack_b, 'a');
     // push(stack_a, stack_b, 'a');

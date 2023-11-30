@@ -98,9 +98,10 @@ void    push(t_head *stack_a, t_head *stack_b, char option)
     }
 }
 
-void    rotate(t_head *stack )
+void    rotate(t_head *stack)
 {
-   //The first element becomes the last one 
+    //The first element becomes the last one
+    //protect
     
     t_node  *top_node;
     t_node  *bottom_node;
@@ -110,7 +111,7 @@ void    rotate(t_head *stack )
     bottom_node = stack->bottom;
     top_next_node = stack->top->next;
 
-    bottom_node->next = top_node;
+    bottom_node->next = stack->top;
     //swaping
     
     top_node->prev = bottom_node;
@@ -122,6 +123,8 @@ void    rotate(t_head *stack )
     //update
     
 }
+
+//reverse rotate;
 
 
 

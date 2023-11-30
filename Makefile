@@ -22,7 +22,7 @@ $(NAME): $(OBJS)
 lib : 
 	make -C ./libft && make -C ./printf
 
-lazy_push :
+push:
 	git add .
 	git commit -m "Lazy_push"
 	git push

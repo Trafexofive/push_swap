@@ -55,6 +55,8 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
             ft_printf("%d -> ", current_a->data);
         current_a = current_a->next;
     }
+    if (current_a == stack_a->bottom)
+        ft_printf("%d | Bottom Reached\n", current_a->data);
     // ft_printf("NULL\n");
 }
 
