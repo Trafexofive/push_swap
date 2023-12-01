@@ -52,9 +52,9 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
 }
 
 // Function to free the memory used by the linked list
-void free_stack(t_head* head)
+void free_stack(t_head* stack)
 {
-    t_node* current = head->top;
+    t_node* current = stack->top;
     while (current != NULL)
 	{
         t_node* temp = current;

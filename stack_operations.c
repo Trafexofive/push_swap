@@ -159,18 +159,32 @@ void    rrr(t_head *stack_a, t_head *stack_b)
     reverse_rotate(stack_b);
 }
 
-bool    is_sort(t_head *stack)
+bool is_sort(t_head *stack)
 {
-    t_node  *current;
+	t_node *current;
 
-    current = stack->top;
-    while (current != stack->bottom && current->next->data > current->data)
-        current = current->next;
-    if (current == stack->bottom)
-        return (TRUE);
-    return (FALSE);
+	if (stack == NULL || stack->top == NULL)
+		return FALSE;
 
+	current = stack->top;
+	while (current != stack->bottom && current->next != NULL && current->next->data > current->data)
+		current = current->next;
+	if (current == stack->bottom)
+		return TRUE;
+	return FALSE;
 }
 
 
 //function to index sorted elements
+
+// void    sort_index(t_head *stack)
+// {
+//     t_node  *current;
+//
+//     current = stack->top;
+//     
+// }
+
+
+
+

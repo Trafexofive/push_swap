@@ -3,7 +3,7 @@
 #define PUSH_SWAP_H
 
 #include "./libft/libft.h"
-#include "./printf/ft_printf.h"
+#include "printf/ft_printf.h"
 
 /***************** Macros ***************/
 
@@ -15,19 +15,19 @@
 
 /***************** Structs **************/
 
-typedef struct node 
+typedef struct s_node 
 {
 	int				data;
-    struct node     *prev;
-	struct node     *next;
+    struct s_node     *prev;
+	struct s_node     *next;
     unsigned int    index;
 }t_node;
 
 typedef struct s_head
 {
-    struct node     *top;
-    struct node     *current;
-    struct node     *bottom;
+    struct s_node     *top;
+    struct s_node     *current;
+    struct s_node     *bottom;
     unsigned int    stack_len;
     char            name;
 }t_head;
