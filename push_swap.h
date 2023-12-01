@@ -20,7 +20,7 @@ typedef struct s_node
 	int				data;
     struct s_node     *prev;
 	struct s_node     *next;
-    unsigned int    index;
+    int    index;
 }t_node;
 
 typedef struct s_head
@@ -28,7 +28,7 @@ typedef struct s_head
     struct s_node     *top;
     struct s_node     *current;
     struct s_node     *bottom;
-    unsigned int    stack_len;
+    int    stack_len;
     char            name;
 }t_head;
 
@@ -49,7 +49,7 @@ void    push(t_head *stack_a, t_head *stack_b, char option);
 void    reverse_rotate(t_head *stack);
 bool    is_sort(t_head *stack);
 
-void    sort_index(t_head *stack);
+void    sort_index(t_head *stack, t_node *new_node);
 /*-------------- Parsing --------------------*/
 int *parse_multi(int ac, char **av, int *data);
 int *parse_string(int ac, char **av, int *data);
@@ -57,5 +57,8 @@ int *ft_parse(int ac, char **av, int *data);
 bool    is_duped(int *arr);
 
 /*-------------- mandatory --------------------*/
-t_node* create_node(int data);
+t_node* create_node(int data, int index);
+bool    sort(t_head *stack);
+bool    sort_two(t_head *stack);
+
 #endif

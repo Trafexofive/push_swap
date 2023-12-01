@@ -5,16 +5,18 @@
 // Define a structure for a node in the linked list
 
 // Function to create a new node with the given data
-t_node  *create_node(int data)
+t_node  *create_node(int data, int index)
 {
     t_node* new_node;
 
     new_node = (t_node*)malloc(sizeof(t_node));
     if (!new_node)
         return (NULL);
+    new_node->index = index;
     new_node->data = data;
     new_node->next = NULL;
     new_node->prev= NULL;
+    new_node->index = 0;
     return new_node;
 }
 
@@ -26,7 +28,7 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
     t_node* current_a = stack_a->top;
     t_node* current_b = stack_b->top;
 
-    ft_printf("\nStack A :\n");
+    ft_printf("\nStack B :\n");
     while (current_b != NULL)
     {
         if (current_b == stack_b->bottom)
@@ -37,7 +39,7 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
     }
     if (current_b == stack_b->bottom)
         ft_printf("%d | %d \n---------\n", current_b->index, current_b->data);
-    ft_printf("Stack B :\n");
+    ft_printf("Stack A :\n");
     while (current_a != NULL) 
     {
         if (current_a == stack_a->bottom)

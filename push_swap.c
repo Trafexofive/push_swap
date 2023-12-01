@@ -3,6 +3,7 @@
 #include "push_swap.h"
 #include "printf/ft_printf.h"
 #include <stdbool.h>
+#include <stdio.h>
 
 //void	print_node(int index, node_t head)
 
@@ -13,26 +14,42 @@
 //
 // }
 
+// more like node_linker
+
+void    free_stack_2(t_head *stack)
+{
+	t_node  *tmp;
+	t_node  *tmp2;
+
+	tmp = stack->top;
+	while (tmp)
+	{
+		tmp2 = tmp->next;
+		free(tmp);
+		tmp = tmp2;
+	}
+	free(stack);
+}
+
 t_node  *fill_node(int data, t_head *stack)
 {
     t_node  *new_node;
     
     if (stack->top == NULL)
     {
-        new_node = create_node(data);
+        new_node = create_node(data, -1);
         if (new_node == NULL)
         {
             free_stack(stack);
             return (NULL);
         }
-        new_node->index = 0;
         stack->stack_len = 0;
         stack->top = new_node;
         stack->current = new_node;
     }
     else
     {
-        new_node = create_node(data);
+        new_node = create_node(data, -1);
         if (new_node == NULL)
         {
             free_stack(stack);
@@ -41,7 +58,9 @@ t_node  *fill_node(int data, t_head *stack)
         new_node->prev = stack->current;
         stack->current->next = new_node;
         stack->current = new_node;
-        stack->stack_len++;
+        stack->stack_len = stack->stack_len + 1;
+        if (stack->name == 'a')
+            sort_index(stack, new_node);
     }
     return (new_node);
 }
@@ -67,21 +86,21 @@ t_node *create_stack(int len, int *arr,t_head *stack)
     tmp = tmp->prev;
 	tmp->next = NULL;
     stack->bottom = tmp;
-    sort_index(stack);
 	return (tmp);
-    //return the last node aka, always the tail
 }
 
 
 t_head  *stack_init(t_head *stack)
 {
-
-
     stack = (t_head *) ft_calloc(1, sizeof(t_head));
     if (stack == NULL)
         return (NULL);
+    if (stack->name)
+	{
+        stack->name = 'b';
+		stack->bottom = NULL;
+	}
     stack->name = 'a';
-    stack->name = 'b';
     stack->stack_len = 0;
 	stack->top = NULL;
     return (stack);
@@ -94,22 +113,20 @@ int main(int ac, char **av)
     t_head      *stack_a;
     t_head      *stack_b;
 	int	        *data;
-    int         arr[3] = {1, 4, 6};
-    int         sort;
+    size_t      len;
 
     data = 0;
 	data = ft_parse(ac, av, data);
+    len = ft_strlen_int(data);
 
     stack_a = NULL;
     stack_b = NULL;
     stack_a = stack_init(stack_a);
     stack_b = stack_init(stack_b);
 
-    stack_a->bottom = create_stack(ac , data, stack_a);
-    stack_b->bottom = create_stack(4, arr, stack_b);
-    if (stack_a == NULL || stack_b == NULL)
-        return 0;
-	free(data);
+    stack_a->bottom = create_stack(len, data, stack_a);
+
+
 
 
     // rotate(stack_a);
@@ -119,14 +136,20 @@ int main(int ac, char **av)
     // pop_last(stack_a);
     // swap(stack_a);
 
-    sort = is_sort(stack_a);
-    ft_putnbr_fd(sort, 1);
-    // push(stack_a, stack_b, 'a');
-    // push(stack_a, stack_b, 'a');
+    // issort = is_sort(stack_a);
+    // printf("sort ===%d\n", issort);
+
+    // ft_putnbr_fd(sort, 1);
+    push(stack_a, stack_b, 'a');
+    push(stack_a, stack_b, 'a');
+    push(stack_a, stack_b, 'a');
+    // sort(stack_b);
 
     print_stacks(stack_a, stack_b);
+    printf("%d ===== stack_len", stack_a->stack_len);
     free_stack(stack_a);
     free_stack(stack_b);
+	free(data);
 	
 	return EXIT_SUCCESS;
 }
