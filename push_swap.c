@@ -85,7 +85,7 @@ int main(int ac, char **av)
     // ft_printf("node data ====>%d\n", stack_a->bottom->data);
     // reverse_rotate(stack_a);
     // pop_last(stack_a);
-    swap(stack_b);
+    swap(stack_a);
 
     sort = is_sort(stack_a);
     ft_putnbr_fd(sort, 1);

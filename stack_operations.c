@@ -171,3 +171,6 @@ bool    is_sort(t_head *stack)
     return (FALSE);
 
 }
+
+
+//function to index sorted elements
