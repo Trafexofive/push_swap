@@ -185,6 +185,29 @@ bool is_sort(t_head *stack)
 //     
 // }
 
+// hardcoded cases
 
 
+void    sort_two(t_head *stack)
+{
 
+    t_node  *top_node;
+
+    top_node = stack->top;
+    if (top_node->data < top_node->next->data)
+        swap(stack);
+}
+
+void    sort_three(t_head *stack)
+{
+    t_node  *top_node;
+
+    top_node = stack->top;
+    
+}
+
+void    sort(t_head *stack)
+{
+    if (stack->stack_len == 2)
+        sort_two(stack);
+}
