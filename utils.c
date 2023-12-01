@@ -61,6 +61,8 @@ void free_stack(t_head* stack)
         current = current->next;
         free(temp);
     }
+    stack->top = NULL;
+    stack->bottom = NULL;
 }
 
 size_t	ft_strlen_int(int *c)

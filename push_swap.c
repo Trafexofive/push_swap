@@ -42,12 +42,11 @@ t_node  *fill_node(int data, t_head *stack)
         stack->current->next = new_node;
         stack->current = new_node;
         stack->stack_len++;
-        new_node->index = stack->stack_len;
     }
     return (new_node);
 }
 
-t_node *create_stack(int len, int *arr,t_head *head)
+t_node *create_stack(int len, int *arr,t_head *stack)
 {
     t_node  *tmp; 
 	int i = 0;
@@ -57,16 +56,18 @@ t_node *create_stack(int len, int *arr,t_head *head)
 	{
         if (i == len)
             break;
-		tmp = fill_node(arr[i], head); 
+		tmp = fill_node(arr[i], stack); 
         if (tmp == NULL)
         {
-            free_l
+            free_stack(stack);
+            return (NULL);
         }
 		i++;
 	}
     tmp = tmp->prev;
 	tmp->next = NULL;
-    head->bottom = tmp;
+    stack->bottom = tmp;
+    sort_index(stack);
 	return (tmp);
     //return the last node aka, always the tail
 }
@@ -77,9 +78,13 @@ t_head  *stack_init(t_head *stack)
 
 
     stack = (t_head *) ft_calloc(1, sizeof(t_head));
+    if (stack == NULL)
+        return (NULL);
     stack->name = 'a';
     stack->name = 'b';
     stack->stack_len = 0;
+	stack->top = NULL;
+    return (stack);
 }
 
 
@@ -95,14 +100,15 @@ int main(int ac, char **av)
     data = 0;
 	data = ft_parse(ac, av, data);
 
-
-    stack_b->stack_len = 0;
-
-	stack_a->top = NULL;
-	stack_b->top = NULL;
+    stack_a = NULL;
+    stack_b = NULL;
+    stack_a = stack_init(stack_a);
+    stack_b = stack_init(stack_b);
 
     stack_a->bottom = create_stack(ac , data, stack_a);
     stack_b->bottom = create_stack(4, arr, stack_b);
+    if (stack_a == NULL || stack_b == NULL)
+        return 0;
 	free(data);
 
 
@@ -111,7 +117,7 @@ int main(int ac, char **av)
     // ft_printf("node data ====>%d\n", stack_a->bottom->data);
     // reverse_rotate(stack_a);
     // pop_last(stack_a);
-    swap(stack_a);
+    // swap(stack_a);
 
     sort = is_sort(stack_a);
     ft_putnbr_fd(sort, 1);
@@ -121,9 +127,6 @@ int main(int ac, char **av)
     print_stacks(stack_a, stack_b);
     free_stack(stack_a);
     free_stack(stack_b);
-	
-
-
 	
 	return EXIT_SUCCESS;
 }

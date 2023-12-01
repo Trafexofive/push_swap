@@ -172,18 +172,51 @@ bool is_sort(t_head *stack)
 	if (current == stack->bottom)
 		return TRUE;
 	return FALSE;
+    //not working to fix
 }
 
 
 //function to index sorted elements
 
-// void    sort_index(t_head *stack)
-// {
-//     t_node  *current;
-//
-//     current = stack->top;
-//     
-// }
+void    sort_index(t_head *stack)
+{
+
+    t_node  *top_node;
+    t_node  *node_to_index;
+
+    top_node = stack->top;
+    node_to_index = top_node;
+    while (node_to_index != stack->bottom) 
+    {
+        if (node_to_index == NULL)
+            break;
+        while (top_node != stack->bottom)
+        {
+            // since we dont have any duplicate
+            if (node_to_index->data > top_node->data)
+            {
+            // ft_printf("%d : datan\n", node_to_index->data);
+                node_to_index->index++;
+            }
+            else if (node_to_index->data < top_node->data)
+            {
+                node_to_index->index++;
+
+            }
+            else if (node_to_index->data != top_node->data)
+                    node_to_index = node_to_index->next;
+            else {
+
+                ft_printf("error\n");
+            }
+            top_node = top_node->next;
+            
+        }
+        node_to_index = node_to_index->next;
+        top_node = stack->top;
+        
+    }
+}
 
 // hardcoded cases
 

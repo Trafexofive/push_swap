@@ -49,6 +49,7 @@ void    push(t_head *stack_a, t_head *stack_b, char option);
 void    reverse_rotate(t_head *stack);
 bool    is_sort(t_head *stack);
 
+void    sort_index(t_head *stack);
 /*-------------- Parsing --------------------*/
 int *parse_multi(int ac, char **av, int *data);
 int *parse_string(int ac, char **av, int *data);
