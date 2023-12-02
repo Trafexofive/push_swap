@@ -89,75 +89,68 @@ t_node *create_stack(int len, int *arr,t_head *stack)
 }
 
 
-t_head  *stack_init(t_head *stack)
-{
-    stack = (t_head *) ft_calloc(1, sizeof(t_head));
-    if (stack == NULL)
-        return (NULL);
-    if (stack->name)
-	{
-        stack->name = 'b';
-		stack->bottom = NULL;
-	}
-    stack->name = 'a';
-    stack->stack_len = 0;
-	stack->top = NULL;
-    return (stack);
-}
+// t_head  *stack_init(t_head *stack)
+// {
+//     stack = (t_head *) ft_calloc(1, sizeof(t_head));
+//     if (stack == NULL)
+//         return (NULL);
+//     if (stack->name)
+// 	{
+//         stack->name = 'b';
+// 		stack->bottom = NULL;
+// 	}
+//     stack->name = 'a';
+//     stack->stack_len = 0;
+// 	stack->top = NULL;
+//     return (stack);
+// }
 
 
-int main(int ac, char **av)
-{
+// int main(int ac, char **av)
+// {
 
-    t_head      *stack_a;
-    t_head      *stack_b;
-	int	        *data;
-    size_t      len;
+//     t_head      *stack_a;
+//     t_head      *stack_b;
+// 	int	        *data;
+//     size_t      len;
 
-    data = 0;
-	data = ft_parse(ac, av, data);
-    len = ft_strlen_int(data);
+//     data = 0;
+// 	data = ft_parse(ac, av, data);
+//     len = ft_strlen_int(data);
 
-    stack_a = NULL;
-    stack_b = NULL;
-    stack_a = stack_init(stack_a);
+//     stack_a = NULL;
+//     stack_b = NULL;
+//     stack_a = stack_init(stack_a);
 	
-    stack_b = stack_init(stack_b);
+//     stack_b = stack_init(stack_b);
 
-    stack_a->bottom = create_stack(len, data, stack_a);
-	put_intarr(data);
+//     stack_a->bottom = create_stack(len, data, stack_a);
+	
 
-	while (stack_a->top)
-	{
-		printf("%i\n", stack_a->top->data);
-		stack_a->top = stack_a->top->next;
-	}
 
-	exit(0);
 
-    // rotate(stack_a);
+//     // rotate(stack_a);
     
-    // ft_printf("node data ====>%d\n", stack_a->bottom->data);
-    // reverse_rotate(stack_a);
-    // pop_last(stack_a);
-    // swap(stack_a);
+//     // ft_printf("node data ====>%d\n", stack_a->bottom->data);
+//     // reverse_rotate(stack_a);
+//     // pop_last(stack_a);
+//     // swap(stack_a);
 
-    // issort = is_sort(stack_a);
-    // printf("sort ===%d\n", issort);
+//     // issort = is_sort(stack_a);
+//     // printf("sort ===%d\n", issort);
 
-    // ft_putnbr_fd(sort, 1);
-	puts("jjjjjjjjjjjjj");
-    // pb(stack_a, stack_b);
-	// pb(stack_a, stack_b);
-	// pb(stack_a, stack_b);
-    // sort(stack_b);
-    printf("%d ===== stack_len", stack_b->stack_len);
+//     // ft_putnbr_fd(sort, 1);
+//     // pb(stack_a, stack_b);
+// 	// pb(stack_a, stack_b);
+// 	// pb(stack_a, stack_b);
+//     // sort(stack_b);
+//     // printf("%d ===== stack_len", stack_b->stack_len);
 
 
-    print_stacks(stack_a, stack_b);
-    free_stack(stack_a);
-    free_stack(stack_b);
-	free(data);
+//     print_stacks(stack_a, stack_b);
+//     free_stack(stack_a);
+//     free_stack(stack_b);
+// 	free(data);
 	
-	return EXIT_SUCCESS;
-}
+// 	return EXIT_SUCCESS;
+// }
