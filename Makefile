@@ -14,7 +14,7 @@ PRINTF := printf/libftprintf.a
 OBJS	:= ${SRCS:.c=.o}
 
 all: $(NAME)
-	./push_swap  91 565 88 
+	./push_swap  3 1 2
 
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)

@@ -145,11 +145,11 @@ int main(int ac, char **av)
 
     // rotate(stack_a);
     
-    // reverse_rotate(stack_a);
+    reverse_rotate(stack_a);
     // pop_last(stack_a);
 
-    sa(stack_a);
-	reverse_rotate(stack_a);
+    // sa(stack_a);
+	// reverse_rotate(stack_a);
     // issort = is_sort(stack_a);
     // printf("sort ===%d\n", issort);
 
