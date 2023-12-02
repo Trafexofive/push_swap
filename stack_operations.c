@@ -78,8 +78,6 @@ void    pa(t_head *stack_a, t_head *stack_b)
     node = create_node(stack_a->top->data, stack_a->top->index);
     top_a = stack_a->top;
     top_b = stack_b->top;
-    if (!node)
-        return ;
 	if (top_b == NULL)
 		stack_b->top = node;
 	else

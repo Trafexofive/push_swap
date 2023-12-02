@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+
 int* parseArguments(int argc, char *argv[], int *size) {
     // Allocate memory for the array
     int *result = (int*)malloc(argc * sizeof(int));
@@ -29,15 +32,16 @@ int* parseArguments(int argc, char *argv[], int *size) {
         char *token = argv[i];
 
         // Convert string to integer and handle errors
-        int value = strtol(token, &token, 10);
-        if (*token != '\0' && *token != ' ' && *token != '\t') {
-            fprintf(stderr, "Invalid argument: %s\n", argv[i]);
-            exit(EXIT_FAILURE);
-        }
+        while (*token != '\0') {
+            int value = strtol(token, &token, 10);
+            result[*size] = value;
+            (*size)++;
 
-        // Add the parsed integer to the array
-        result[*size] = value;
-        (*size)++;
+            // Skip spaces and tabs
+            while (*token == ' ' || *token == '\t') {
+                token++;
+            }
+        }
 
         // Increment loop variable
         i++;
@@ -64,7 +68,6 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
 
 
 // int *parse_string(int ac, char **av, int *data)
