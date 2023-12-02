@@ -4,6 +4,7 @@
 
 #include "./libft/libft.h"
 #include "printf/ft_printf.h"
+#include <limits.h>
 
 /***************** Macros ***************/
 
@@ -28,7 +29,7 @@ typedef struct s_head
     struct s_node     *top;
     struct s_node     *current;
     struct s_node     *bottom;
-    int    stack_len;
+    int                stack_len;
     char            name;
 }t_head;
 
@@ -53,21 +54,25 @@ void matrix_free(char **matrix);
 
 void    sort_index(t_head *stack, t_node *new_node);
 /*-------------- Parsing --------------------*/
-int *parse_multi(int ac, char **av, int *data);
-int *parse_string(int ac, char **av, int *data);
-int *ft_parse(int ac, char **av, int *data);
-bool sort_above_five(t_head *stack_a, t_head *stack_b);
+// int *parse_multi(int ac, char **av, int *data);
+// int *parse_string(int ac, char **av, int *data);
+t_head*  ft_parse(int ac, char **av);
 void    rotate(t_head *stack);
-t_node *create_stack(int len, int *arr,t_head *stack);
-bool    is_duped(int *arr);
+t_node *create_stack(int len, char **arr,t_head *stack);
+bool    is_duped(t_node *node);
+t_head	*ft_parse(int ac, char **av);
+int lst_size(t_node *lst);
+bool    already_sorted(t_node *node);
+bool    check_number(char *str);
 
 /*-------------- mandatory --------------------*/
+bool sort_above_five(t_head *stack_a, t_head *stack_b);
 t_node* create_node(int data, int index);
 bool    sort(t_head *stack_a, t_head *stack_b);
 bool    sort_two(t_head *stack);
 int put_intarr(int *tab);
 void	sa(t_head *stack_a);
 void	sb(t_head *stack_b);
-t_head  *stack_init(t_head *stack, char c);
+t_head  *stack_init(char c);
 
 #endif

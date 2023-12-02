@@ -1,63 +1,36 @@
 
 #include "push_swap.h"
 
-// void    pop_last(t_head *stack)
-// {
-//     t_node  *last_node;
+void	ft_swap(int *a, int *b)
+{
+	int tmp;
 
-//     last_node = stack->bottom;
-//     stack->bottom = last_node->prev;
-//     last_node->prev->next = NULL;
-//     free(last_node);
-// }
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
 
-// void pop(t_head *stack, unsigned int index)
-// {
-// 	t_node* current;
+t_node *last_node(t_head *stack)
+{
+	t_node *tmp;
 
-// 	current = stack->top;
-// 	while (current != NULL && index > 0)
-// 	{   
-// 		current = current->next;
-// 		index--;
-// 	}
-// 	if (current != NULL) 
-// 	{
-// 		if (current->prev != NULL) {
-// 			current->prev->next = current->next;
-// 		}
-// 		if (current->next != NULL) {
-// 			current->next->prev = current->prev;
-// 		}
-// 		free(current);
-// 	}
-// }
+	tmp = stack->top;
+	while (tmp->next && tmp->next != stack->top)
+		tmp = tmp->next;
+	return (tmp);
+}
 
 void    swap(t_head *stack)
 {
-    t_node  *top_next_node;
-    t_node  *top_node;
 
 	if (stack->top == NULL || stack->top->next == NULL)
 		return;
-    top_node = stack->top;
-    top_next_node = stack->top->next;
-    // The stack is empty or has only one element, nothing to swap
-	if (stack->top == NULL || stack->top->next == NULL)
-        return;
-    top_node->next = top_next_node->next;
-    top_node->prev = top_next_node;
-    // top_next_node->prev = NULL;
-    top_next_node->next = top_node;
-	// top_next_node->next = top_node->next;
-    stack->top = top_next_node;
-	// stack->bottom = top_node;
-    // if (stack->stack_len == 2)
-    //     stack->bottom = top_node;
+	t_node *tmp = stack->top;
 
+	ft_swap(&tmp->data, &tmp->next->data);
+	ft_swap(&tmp->index, &tmp->next->index);
 }
 
-// if (stack_bottom->next) check if that is true and handle
 void	sa(t_head *stack_a)
 {
 	swap(stack_a);
@@ -72,78 +45,57 @@ void	sb(t_head *stack_b)
 
 void    pa(t_head *stack_a, t_head *stack_b)
 {
-    //split it up. no allocation on stack b
-
-    t_node  *node;
-    t_node  *top_a;
-    t_node  *top_b;
-
-	if (stack_b->top == NULL || stack_b->top->next == NULL)
+	if (stack_b->top == NULL)
 		return ;
-    node = create_node(stack_a->top->data, stack_a->top->index);
-    top_a = stack_a->top;
-    top_b = stack_b->top;
-	if (top_b == NULL)
-		stack_b->top = node;
-	else
+	if (stack_a->top == NULL)
 	{
-		stack_b->top = node;
-        top_b->prev = node;
-        node->next = top_b;
-        node->prev = NULL;
+		stack_a->top = stack_b->top;
+		stack_b->top = stack_b->top->next;
+		stack_a->top->next = NULL;
 	}
-    stack_a->top = stack_a->top->next;
-    top_a->next = NULL;
-    free(top_a);
+	else {
+		t_node *tmp = stack_b->top;
+		stack_b->top = stack_b->top->next;
+		tmp->next = stack_a->top;
+		stack_a->top = tmp;
+	}
+	stack_a->stack_len++;
+	stack_b->stack_len--;
 	ft_putstr_fd("pa\n", 1);
 }
 
 void    pb(t_head *stack_a, t_head *stack_b)
 {
-    t_node  *node;
-    t_node  *top_a;
-    t_node  *top_b;
-
-	if (stack_a->top == NULL || stack_a->top->next == NULL)
+	if (stack_a->top == NULL)
 		return;
-
-    node = create_node(stack_b->top->data, stack_b->top->index);
-    top_a = stack_a->top;
-    top_b = stack_b->top;
-	if (top_a == NULL)
-		stack_a->top = node;
-	else
+	if (stack_b->top == NULL)
 	{
-		stack_a->top = node;
-        top_a->prev = node;
-        node->next = top_a;
-        node->prev = NULL;
+		stack_b->top = stack_a->top;
+		stack_a->top = stack_a->top->next;
+		stack_b->top->next = NULL;
 	}
-    stack_b->top = stack_b->top->next;
-    top_b->next = NULL;
-    free(top_b);
+	else {
+		t_node *tmp = stack_a->top;
+		stack_a->top = stack_a->top->next;
+		tmp->next = stack_b->top;
+		stack_b->top = tmp;
+	}
+	stack_b->stack_len++;
+	stack_a->stack_len--;
+	ft_putstr_fd("pb\n", 1);
 }
-
 	
 void    rotate(t_head *stack)
 {
-    //protect
 	if (stack->top == NULL || stack->top->next == NULL)
 		return;
-    t_node  *top_node;
-    t_node  *bottom_node;
-    t_node  *top_next_node;
 
-    top_node = stack->top;
-    bottom_node = stack->bottom;
-    top_next_node = stack->top->next;
+		
+	t_node *first = stack->top;
+	last_node(stack)->next = first;
+	stack->top = stack->top->next;
+	first->next = NULL;
 
-    bottom_node->next = top_node;
-    top_node->prev = bottom_node;
-    top_node->next = NULL;
-    top_next_node->prev = NULL;
-    stack->top = top_next_node;
-    stack->bottom = top_node;
     if (stack->name == 'a')
         ft_printf("ra\n");
     if (stack->name == 'b')
@@ -156,21 +108,17 @@ void    rr(t_head *stack_a, t_head *stack_b)
     rotate(stack_b);
 }
 
-void reverse_rotate(t_head *stack)
+
+
+void	reverse_rotate(t_head *stack)
 {
-	if (stack->top == NULL || stack->top->next == NULL)
+	if (stack->top == NULL || stack->top->next == NULL)// 1 -> 2 -> 3
 		return;
-	t_node *top_node = stack->top;
-	t_node *bottom_node = stack->bottom;
-	t_node *bottom_prev_node = stack->bottom->prev;
+	t_node *last = last_node(stack);
+	last->next = stack->top;
+	stack->top = last;
+	last_node(stack)->next = NULL;
 
-	bottom_node->next = top_node;
-	bottom_prev_node->next = NULL;
-	top_node->prev = bottom_prev_node;
-	bottom_node->prev = NULL;
-
-	stack->bottom = top_node;
-	stack->top = bottom_node;
 	if (stack->name == 'a')
 		ft_printf("rra\n");
 	else if (stack->name == 'b')

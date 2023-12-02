@@ -36,19 +36,16 @@ void fill_node(int data, t_head **stack)
 {
 	t_node *new_node;
 
+	new_node = create_node(data, 0);
+	if (!new_node)
+		return ;
 	if ((*stack)->top == NULL)
 	{
-		new_node = create_node(data, 0);
-		if (!new_node)
-			return ;
 		(*stack)->top = new_node;
 		(*stack)->current = new_node;
 	}
 	else
 	{
-		new_node = create_node(data, 0);
-		if (!new_node)
-			return ;
 		new_node->next = NULL;
 		new_node->prev = (*stack)->current;
 		(*stack)->current->next = new_node;
@@ -57,12 +54,49 @@ void fill_node(int data, t_head **stack)
 		sort_index(*stack, new_node);
 	}
 }
-t_node *create_stack(int len, int *arr,t_head *stack)
+void	ft_error(void)
+{
+	ft_putstr_fd("Error\n", 1);
+
+	exit(EXIT_FAILURE);
+}
+
+bool	check_digit(char *str)
+{
+	int i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}
+
+bool	check_number(char *str)
+{
+	long	num;
+	
+	num = ft_atoi(str);
+	if (num > INT_MAX || num < INT_MIN || ft_strlen(str) > 11 || check_digit(str))
+	{
+		ft_putstr_fd("Error\n", 1);
+		return(false);
+	}
+	return (true);
+
+}
+
+t_node *create_stack(int len, char **arr,t_head *stack)
 {
 	int i = 0;
 	while (arr && i < len)
 	{
-		fill_node(arr[i], &stack);
+		fill_node(atol(arr[i]), &stack);
 		stack->stack_len++;
 		i++;
 	}
@@ -70,14 +104,16 @@ t_node *create_stack(int len, int *arr,t_head *stack)
 }
 
 
-t_head  *stack_init(t_head *stack, char c)
+t_head  *stack_init(char c)
 {
-    stack = (t_head *) ft_calloc(1, sizeof(t_head));
-    if (stack == NULL)
+	t_head *new_stack;
+
+    new_stack = (t_head *) ft_calloc(1, sizeof(t_head));
+    if (new_stack == NULL)
         return (NULL);
-    stack->name = c;
-    stack->stack_len = 0;
-	stack->top = NULL;
-	stack->bottom = NULL;
-    return (stack);
+    new_stack->name = c;
+    new_stack->stack_len = 0;
+	new_stack->top = NULL;
+	new_stack->bottom = NULL;
+    return (new_stack);
 }
