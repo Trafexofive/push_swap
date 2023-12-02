@@ -11,25 +11,25 @@ void    pop_last(t_head *stack)
     free(last_node);
 }
 
-void    pop(t_head *stack, unsigned int index)
+void pop(t_head *stack, unsigned int index)
 {
-    
-    // top and bottom pop behavior unsure.
-    // unsafe to use. recode
-    t_node* current;
-    t_node  *tmp;
+	t_node* current;
 
-    current = stack->top;
-    while (current != NULL && index > 0)
+	current = stack->top;
+	while (current != NULL && index > 0)
 	{   
-        current = current->next;
-        index--;
-    }
-    tmp = current->prev;
-    // logical problem
-    current->prev = current->next->prev;
-    current->next = tmp->next;
-    free(current);
+		current = current->next;
+		index--;
+	}
+	if (current != NULL) {
+		if (current->prev != NULL) {
+			current->prev->next = current->next;
+		}
+		if (current->next != NULL) {
+			current->next->prev = current->prev;
+		}
+		free(current);
+	}
 }
 
 void    swap(t_head *stack)
@@ -67,37 +67,35 @@ void	sb(t_head *stack_b)
     ft_printf("sb\n");
 }
 
-void    push(t_head *stack_a, t_head *stack_b, char option)
+void    pa(t_head *stack_a, t_head *stack_b)
 {
-	t_node  *top_a;
-	t_node  *top_b;
+    //split it up. no allocation on stack b
 
-	top_a = stack_a->top;
-	top_b = stack_b->top;
+    t_node  *node;
+    t_node  *top_a;
+    t_node  *top_b;
 
-	if (option == 'a')
-	{
-		if (top_a == NULL)
-			return;
-		
-		top_a->prev = top_b;
-		top_b->next = top_a;
-		top_b->prev = NULL;
-		stack_b->top = top_b;
-		stack_a->top = top_a->next;
-	}
+    node = create_node(stack_a->top->data, stack_a->top->index);
+    top_a = stack_a->top;
+    top_b = stack_b->top;
+    if (!node)
+        return ;
+	if (top_b == NULL)
+		stack_b->top = node;
 	else
 	{
-		if (top_b == NULL)
-			return;
-		
-		top_b->prev = top_a;
-		top_a->next = top_b;
-		top_a->prev = NULL;
-		stack_a->top = top_a;
-		stack_b->top = top_b->next;
-    }
+		stack_b->top = node;
+        top_b->prev = node;
+        node->next = top_b;
+        node->prev = NULL;
+	}
+    stack_a->top = stack_a->top->next;
+    top_a->next = NULL;
+	stack_b->stack_len++;
+	stack_a->stack_len--;
+    free(top_a);
 }
+
 	
 void    rotate(t_head *stack)
 {
@@ -158,117 +156,3 @@ void    rrr(t_head *stack_a, t_head *stack_b)
     reverse_rotate(stack_b);
 }
 
-bool is_sort(t_head *stack)
-{
-	t_node *current;
-
-	if (stack == NULL || stack->top == NULL)
-		return FALSE;
-
-	current = stack->top;
-	while (current != stack->bottom && current->next != NULL && current->next->data > current->data)
-		current = current->next;
-	if (current == stack->bottom)
-		return (ft_printf("sorted", TRUE));
-	return FALSE;
-    //not working to fix
-}
-
-
-//function to index sorted elements
-
-void    sort_index(t_head *stack, t_node *new_node)
-{
-
-    t_node  *top_node;
-
-    if (stack == NULL)
-        return ;
-    top_node = stack->top;
-    while (top_node != NULL) 
-    {
-        if (new_node->data > top_node->data)
-            new_node->index++;
-        else if (new_node->data < top_node->data)
-            top_node->index++;
-        else
-            break ;
-        top_node = top_node->next;
-    }
-}
-
-// hardcoded cases
-
-
-bool    sort_two(t_head *stack)
-{
-    t_node  *top_node;
-
-    top_node = stack->top;
-    if (top_node->data > top_node->next->data)
-    {
-        swap(stack);
-        return (TRUE);
-    }
-     return FALSE;
-}
-
-
-bool sort_three(t_head *stack)
-{
-	t_node *top_node;
-	t_node *next_node;
-	t_node *prev_node;
-
-	top_node = stack->top;
-	next_node = top_node->next;
-	prev_node = top_node->prev;
-
-	if (top_node->data > next_node->data && next_node->data < prev_node->data)
-	{
-		rotate(stack);
-		return TRUE;
-	}
-	else if (top_node->data > next_node->data && next_node->data > prev_node->data)
-	{
-		reverse_rotate(stack);
-		return TRUE;
-	}
-	else if (top_node->data < next_node->data && next_node->data > prev_node->data)
-	{
-		swap(stack);
-		return TRUE;
-	}
-	else if (top_node->data > next_node->data && next_node->data > prev_node->data)
-	{
-		swap(stack);
-		rotate(stack);
-		return TRUE;
-	}
-	else if (top_node->data < next_node->data && next_node->data < prev_node->data)
-	{
-		reverse_rotate(stack);
-		swap(stack);
-		return TRUE;
-	}
-
-	return FALSE;
-}
-
-// bool    sort_three(t_head *stack)
-// {
-//     t_node  *top_node;
-//
-//     top_node = stack->top;
-//     
-// }
-
-bool    sort(t_head *stack)
-{
-    if (stack->stack_len == 2)      
-        return (sort_two(stack));
-    else if (stack->stack_len == 3)
-        return (sort_three(stack));
-
-    return (FALSE);
-}

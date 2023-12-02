@@ -37,19 +37,18 @@ t_node  *fill_node(int data, t_head *stack)
     
     if (stack->top == NULL)
     {
-        new_node = create_node(data, -1);
+        new_node = create_node(data, 0);
         if (new_node == NULL)
         {
             free_stack(stack);
             return (NULL);
         }
-        stack->stack_len = 0;
         stack->top = new_node;
         stack->current = new_node;
     }
     else
     {
-        new_node = create_node(data, -1);
+        new_node = create_node(data, 0);
         if (new_node == NULL)
         {
             free_stack(stack);
@@ -128,7 +127,6 @@ int main(int ac, char **av)
 
 
 
-
     // rotate(stack_a);
     
     // ft_printf("node data ====>%d\n", stack_a->bottom->data);
@@ -140,13 +138,17 @@ int main(int ac, char **av)
     // printf("sort ===%d\n", issort);
 
     // ft_putnbr_fd(sort, 1);
-    push(stack_a, stack_b, 'a');
-    push(stack_a, stack_b, 'a');
-    push(stack_a, stack_b, 'a');
-    // sort(stack_b);
+    pa(stack_a, stack_b);
+	pa(stack_a, stack_b);
+	pa(stack_a, stack_b);
+    // pb(stack_a, stack_b);
+	// pb(stack_a, stack_b);
+	// pb(stack_a, stack_b);
+    sort(stack_b);
+    printf("%d ===== stack_len", stack_b->stack_len);
+
 
     print_stacks(stack_a, stack_b);
-    printf("%d ===== stack_len", stack_a->stack_len);
     free_stack(stack_a);
     free_stack(stack_b);
 	free(data);

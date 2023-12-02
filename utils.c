@@ -9,14 +9,13 @@ t_node  *create_node(int data, int index)
 {
     t_node* new_node;
 
-    new_node = (t_node*)malloc(sizeof(t_node));
+    new_node = (t_node*)ft_calloc(1, sizeof(t_node));
     if (!new_node)
         return (NULL);
     new_node->index = index;
     new_node->data = data;
     new_node->next = NULL;
     new_node->prev= NULL;
-    new_node->index = 0;
     return new_node;
 }
 
@@ -28,29 +27,46 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
     t_node* current_a = stack_a->top;
     t_node* current_b = stack_b->top;
 
+	if (stack_b->top == NULL)
+	{
+		ft_printf("Stack B is empty\n");
+		    ft_printf("Stack A :\n");
+    	while (current_a != NULL) 
+    	{
+        	if (current_a == stack_a->bottom)
+            	break;
+    	    if (current_a->next && stack_a->bottom != current_a)
+            	ft_printf("%d | %d\n", current_a->index, current_a->data);
+    	    current_a = current_a->next;
+			if (current_a == stack_a->bottom)
+        		ft_printf("%d | %d\n---------\n", current_a->index, current_a->data);
+    	}
+	
+		return ;
+	}
+		ft_printf("Stack A :\n");
+    	while (current_a != NULL) 
+    	{
+        	if (current_a == stack_a->bottom)
+            	break;
+    	    if (current_a->next && stack_a->bottom != current_a)
+            	ft_printf("%d | %d\n", current_a->index, current_a->data);
+    	    current_a = current_a->next;
+			if (current_a == stack_a->bottom)
+        		ft_printf("%d | %d\n---------\n", current_a->index, current_a->data);
+    	}
+	
     ft_printf("\nStack B :\n");
     while (current_b != NULL)
     {
-        if (current_b == stack_b->bottom)
-            break;
-        if (current_b->next)
-            ft_printf("%d | %d\n", current_b->index, current_b->data);
+        ft_printf("%d | %d\n", current_b->index, current_b->data);
         current_b = current_b->next;
     }
-    if (current_b == stack_b->bottom)
-        ft_printf("%d | %d \n---------\n", current_b->index, current_b->data);
-    ft_printf("Stack A :\n");
-    while (current_a != NULL) 
-    {
-        if (current_a == stack_a->bottom)
-            break;
-        if (current_a->next && stack_a->bottom != current_a)
-            ft_printf("%d | %d\n", current_a->index, current_a->data);
-        current_a = current_a->next;
-    }
-    if (current_a == stack_a->bottom)
-        ft_printf("%d | %d\n---------\n", current_a->index, current_a->data);
-    // ft_printf("NULL\n");
+    // if (current_b != NULL)
+	// {
+    //     ft_printf("%d | %d \n---------\n", current_b->index, current_b->data);
+	// }
+
 }
 
 // Function to free the memory used by the linked list

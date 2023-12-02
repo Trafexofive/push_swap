@@ -45,7 +45,8 @@ void    swap(t_head *stack);
 t_node  *fill_node(int data, t_head *head);
 void    pop(t_head *stack, unsigned int index);
 void    pop_last(t_head *stack);
-void    push(t_head *stack_a, t_head *stack_b, char option);
+void    pa(t_head *stack_a, t_head *stack_b);
+void    pb(t_head *stack_a, t_head *stack_b);
 void    reverse_rotate(t_head *stack);
 bool    is_sort(t_head *stack);
 
