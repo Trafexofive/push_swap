@@ -4,21 +4,6 @@
 
 // Define a structure for a node in the linked list
 
-// Function to create a new node with the given data
-t_node  *create_node(int data, int index)
-{
-    t_node* new_node;
-
-    new_node = (t_node*)ft_calloc(1, sizeof(t_node));
-    if (!new_node)
-        return (NULL);
-    new_node->index = index;
-    new_node->data = data;
-    new_node->next = NULL;
-    new_node->prev= NULL;
-    return new_node;
-}
-
 
 // Function to traverse and print the linked list
 void    print_stacks(t_head *stack_a, t_head *stack_b)
@@ -33,28 +18,21 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
 		    ft_printf("Stack A :\n");
     	while (current_a != NULL) 
     	{
-        	if (current_a == stack_a->bottom)
-            	break;
-    	    if (current_a->next && stack_a->bottom != current_a)
             	ft_printf("%d | %d\n", current_a->index, current_a->data);
     	    current_a = current_a->next;
-			if (current_a == stack_a->bottom)
-        		ft_printf("%d | %d\n---------\n", current_a->index, current_a->data);
+
     	}
-	
+		if (current_a == stack_a->bottom)
+    		ft_printf("%d | %d\n---------\n", current_a->index, current_a->data);
 		return ;
 	}
 		ft_printf("Stack A :\n");
     	while (current_a != NULL) 
     	{
-        	if (current_a == stack_a->bottom)
-            	break;
-    	    if (current_a->next && stack_a->bottom != current_a)
-            	ft_printf("%d | %d\n", current_a->index, current_a->data);
+            ft_printf("%d | %d\n", current_a->index, current_a->data);
     	    current_a = current_a->next;
-			if (current_a == stack_a->bottom)
-        		ft_printf("%d | %d\n---------\n", current_a->index, current_a->data);
     	}
+        	
 	
     ft_printf("\nStack B :\n");
     while (current_b != NULL)
@@ -97,10 +75,10 @@ int put_intarr(int *tab)
 {
     int i;
 
-    i = 0;
+    i = -1;
     if (!tab)
         return (0);
-    while (tab[i++])
+    while (tab[++i])
     {
         if (!tab[i])
             break;
@@ -153,11 +131,11 @@ bool    is_duped(int *arr)
         while (tmp_str[j])
         {
             if (tmp_str[j] == arr[i])
-                return (0);
+                return (TRUE);
             j++;
         }
         j = 0;
         i++;
     }
-    return (0);
+    return (FALSE);
 }

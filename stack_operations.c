@@ -48,9 +48,10 @@ void    swap(t_head *stack)
     top_node->prev = top_next_node;
     top_next_node->prev = NULL;
     top_next_node->next = top_node;
+	// top_next_node->next = top_node->next;
     stack->top = top_next_node;
-    if (stack->stack_len == 2)
-        stack->bottom = top_node;
+    // if (stack->stack_len == 2)
+    //     stack->bottom = top_node;
 
 }
 
@@ -90,6 +91,30 @@ void    pa(t_head *stack_a, t_head *stack_b)
     stack_a->top = stack_a->top->next;
     top_a->next = NULL;
     free(top_a);
+	ft_putstr_fd("pa\n", 1);
+}
+
+void    pb(t_head *stack_a, t_head *stack_b)
+{
+    t_node  *node;
+    t_node  *top_a;
+    t_node  *top_b;
+
+    node = create_node(stack_b->top->data, stack_b->top->index);
+    top_a = stack_a->top;
+    top_b = stack_b->top;
+	if (top_a == NULL)
+		stack_a->top = node;
+	else
+	{
+		stack_a->top = node;
+        top_a->prev = node;
+        node->next = top_a;
+        node->prev = NULL;
+	}
+    stack_b->top = stack_b->top->next;
+    top_b->next = NULL;
+    free(top_b);
 }
 
 	
@@ -134,6 +159,7 @@ void    reverse_rotate(t_head *stack)
     bottom_node = stack->bottom;
     bottom_prev_node = bottom_node->prev;
 
+    top_node->prev = bottom_node;
     bottom_node->prev = NULL;
     bottom_node->next = top_node;
     bottom_prev_node->next = NULL;

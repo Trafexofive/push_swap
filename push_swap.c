@@ -5,8 +5,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-//void	print_node(int index, node_t head)
-
 //put the int *data in a struct
 
 // bool    free_atexit(t_head *stack_a,t_head *stack_b)
@@ -30,6 +28,21 @@ void    free_stack_2(t_head *stack)
 	}
 	free(stack);
 }
+// Function to create a new node with the given data
+t_node  *create_node(int data, int index)
+{
+    t_node* new_node;
+
+    new_node = (t_node*)ft_calloc(1, sizeof(t_node));
+    if (!new_node)
+        return (NULL);
+    new_node->index = index;
+    new_node->data = data;
+    new_node->next = NULL;
+    new_node->prev= NULL;
+    return new_node;
+}
+
 
 t_node  *fill_node(int data, t_head *stack)
 {
@@ -72,9 +85,10 @@ t_node *create_stack(int len, int *arr,t_head *stack)
     tmp = 0;
 	while (arr)
 	{
+
+		tmp = fill_node(arr[i], stack); 
         if (i == len)
             break;
-		tmp = fill_node(arr[i], stack); 
         if (tmp == NULL)
         {
             free_stack(stack);
@@ -89,68 +103,68 @@ t_node *create_stack(int len, int *arr,t_head *stack)
 }
 
 
-// t_head  *stack_init(t_head *stack)
-// {
-//     stack = (t_head *) ft_calloc(1, sizeof(t_head));
-//     if (stack == NULL)
-//         return (NULL);
-//     if (stack->name)
-// 	{
-//         stack->name = 'b';
-// 		stack->bottom = NULL;
-// 	}
-//     stack->name = 'a';
-//     stack->stack_len = 0;
-// 	stack->top = NULL;
-//     return (stack);
-// }
+t_head  *stack_init(t_head *stack)
+{
+    stack = (t_head *) ft_calloc(1, sizeof(t_head));
+    if (stack == NULL)
+        return (NULL);
+    if (stack->name)
+	{
+        stack->name = 'b';
+		stack->bottom = NULL;
+	}
+    stack->name = 'a';
+    stack->stack_len = 0;
+	stack->top = NULL;
+    return (stack);
+}
 
 
-// int main(int ac, char **av)
-// {
+int main(int ac, char **av)
+{
 
-//     t_head      *stack_a;
-//     t_head      *stack_b;
-// 	int	        *data;
-//     size_t      len;
+    t_head      *stack_a;
+    t_head      *stack_b;
+	int	        *data;
+    size_t      len;
 
-//     data = 0;
-// 	data = ft_parse(ac, av, data);
-//     len = ft_strlen_int(data);
+    data = 0;
+	data = ft_parse(ac, av, data);
+    len = ft_strlen_int(data);
 
-//     stack_a = NULL;
-//     stack_b = NULL;
-//     stack_a = stack_init(stack_a);
+    stack_a = NULL;
+    stack_b = NULL;
+
+    stack_a = stack_init(stack_a);
+    stack_b = stack_init(stack_b);
+
+    stack_a->bottom = create_stack(len, data, stack_a);
 	
-//     stack_b = stack_init(stack_b);
-
-//     stack_a->bottom = create_stack(len, data, stack_a);
-	
 
 
 
-//     // rotate(stack_a);
+    // rotate(stack_a);
     
-//     // ft_printf("node data ====>%d\n", stack_a->bottom->data);
-//     // reverse_rotate(stack_a);
-//     // pop_last(stack_a);
-//     // swap(stack_a);
+    // reverse_rotate(stack_a);
+    // pop_last(stack_a);
 
-//     // issort = is_sort(stack_a);
-//     // printf("sort ===%d\n", issort);
+	reverse_rotate(stack_a);
+    swap(stack_a);
+    // issort = is_sort(stack_a);
+    // printf("sort ===%d\n", issort);
 
-//     // ft_putnbr_fd(sort, 1);
-//     // pb(stack_a, stack_b);
-// 	// pb(stack_a, stack_b);
-// 	// pb(stack_a, stack_b);
-//     // sort(stack_b);
-//     // printf("%d ===== stack_len", stack_b->stack_len);
+    // ft_putnbr_fd(sort, 1);
+    // pa(stack_a, stack_b);
+	// pa(stack_a, stack_b);
+	// pa(stack_a, stack_b);
+    // sort(stack_a);
 
+    // ft_printf("node data ====>%d\n", stack_a->bottom->prev->data);
 
-//     print_stacks(stack_a, stack_b);
-//     free_stack(stack_a);
-//     free_stack(stack_b);
-// 	free(data);
+    print_stacks(stack_a, stack_b);
+    free_stack(stack_a);
+    free_stack(stack_b);
+	free(data);
 	
-// 	return EXIT_SUCCESS;
-// }
+	return EXIT_SUCCESS;
+}
