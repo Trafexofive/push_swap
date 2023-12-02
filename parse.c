@@ -2,8 +2,9 @@
 
 #include "./push_swap.h"
 
-int counter(char **spl){
-	int i;
+int	counter(char **spl)
+{
+	int	i;
 
 	i = 0;
 	while (spl && spl[i])
@@ -11,14 +12,14 @@ int counter(char **spl){
 	return (i);
 }
 
-
 bool	parse_args(int ac, char *av[], t_head *stack)
 {
-	char **spl;
-    int size;
-    int i = 1;
-	int j;
+	char	**spl;
+	int		size;
+	int		i;
+	int		j;
 
+	i = 1; 
 	while (i < ac)
 	{
 		spl = ft_split(av[i], ' ');
@@ -34,17 +35,17 @@ bool	parse_args(int ac, char *av[], t_head *stack)
 		matrix_free(spl);
 		i++;
 	}
-	return false;
+	return (false);
 }
 
-bool str_is_space(char *str)
+bool	str_is_space(char *str)
 {
 	if (!*str)
-		return true;
+		return (true);
 	while (*str)
 	{
 		if (!ft_strchr("\t\n\v\f\r ", *str))
-			return false;
+			return (false);
 		str++;
 	}
 	return (true);
@@ -52,7 +53,7 @@ bool str_is_space(char *str)
 
 bool	check_av(char **av)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (av[i])
@@ -64,19 +65,23 @@ bool	check_av(char **av)
 	return (false);
 }
 
-
 t_head	*ft_parse(int ac, char **av)
 {
-    t_head *data;
+	t_head	*data;
 
-	data = stack_init('a');
 	if (ac == 0)
-		ft_putstr_fd("Error\n", 1);
-	if (check_av(av) || parse_args(ac, av, data) || is_duped(data->top) || already_sorted(data->top))
+		return NULL;
+	data = stack_init('a');
+	if (check_av(av) || parse_args(ac, av, data) || is_duped(data->top))
 	{
-		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("Error\n", 2);
 		free_stack(data);
 		exit(EXIT_FAILURE);
+	}
+	if (already_sorted(data->top))
+	{
+		free_stack(data);
+		exit(EXIT_SUCCESS);
 	}
 	data->stack_len = lst_size(data->top);
 	return (data);

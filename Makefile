@@ -3,7 +3,7 @@ CC := cc
 
 NAME	:= push_swap
 
-CFLAGS	:= -Wextra -Wall -Werror -g -fsanitize=address,undefined
+CFLAGS	:= -Wextra -Wall -Werror
 
 SRCS	:= parse.c sort.c push_swap.c utils.c stack_operations.c stack_initialize.c
 

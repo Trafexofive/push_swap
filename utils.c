@@ -3,34 +3,32 @@
 #include "push_swap.h"
 
 // Define a structure for a node in the linked list
-//reminder to change for index print support
+// reminder to change for index print support
 
-void    print_stacks(t_head *stack_a, t_head *stack_b)
+void	print_stacks(t_head *stack_a, t_head *stack_b)
 {
-	t_node* current_a = stack_a->top;
-	t_node* current_b = stack_b->top;
+	t_node	*current_a;
+	t_node	*current_b;
 
+	current_a = stack_a->top;
+	current_b = stack_b->top;
 	if (stack_b->top == NULL)
 	{
 		ft_printf("Stack B is empty\n");
-			ft_printf("Stack A :\n");
-		while (current_a != NULL) 
-		{
-				ft_printf("%d | %d\n", current_a->index, current_a->data);
-			current_a = current_a->next;
-
-		}
-
-		return ;
-	}
 		ft_printf("Stack A :\n");
-		while (current_a != NULL) 
+		while (current_a != NULL)
 		{
 			ft_printf("%d | %d\n", current_a->index, current_a->data);
 			current_a = current_a->next;
 		}
-			
-	
+		return ;
+	}
+	ft_printf("Stack A :\n");
+	while (current_a != NULL)
+	{
+		ft_printf("%d | %d\n", current_a->index, current_a->data);
+		current_a = current_a->next;
+	}
 	ft_printf("\nStack B :\n");
 	while (current_b != NULL)
 	{
@@ -39,13 +37,14 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
 	}
 	// if (current_b != NULL)
 	// {
-	//     ft_printf("%d | %d \n---------\n", current_b->index, current_b->data);
+	//     ft_printf("%d | %d \n---------\n", current_b->index,
+	//	current_b->data);
 	// }
 }
 
-void matrix_free(char **matrix)
+void	matrix_free(char **matrix)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (matrix[i])
@@ -57,12 +56,15 @@ void matrix_free(char **matrix)
 }
 
 // Function to free the memory used by the linked list
-void free_stack(t_head* stack)
+void	free_stack(t_head *stack)
 {
-	t_node* current = stack->top;
+	t_node	*current;
+	t_node	*temp;
+
+	current = stack->top;
 	while (current != NULL)
 	{
-		t_node* temp = current;
+		temp = current;
 		current = current->next;
 		free(temp);
 	}
@@ -80,9 +82,9 @@ size_t	ft_strlen_int(int *c)
 	return (i);
 }
 
-int put_intarr(int *tab)
+int	put_intarr(int *tab)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!tab)
@@ -90,15 +92,15 @@ int put_intarr(int *tab)
 	while (tab[++i])
 	{
 		if (!tab[i])
-			break;
+			break ;
 		ft_printf("Index = %d | %d\n", i, tab[i]);
 	}
 	return (i);
 }
 
-int ft_puttab(char **tab)
+int	ft_puttab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!tab)
@@ -108,15 +110,15 @@ int ft_puttab(char **tab)
 	return (i);
 }
 
-int *strdup_int(int *arr)
+int	*strdup_int(int *arr)
 {
-	int i;
-	int *dupe;
+	int	i;
+	int	*dupe;
 
 	i = -1;
 	if (!arr)
 		return (NULL);
-	dupe = (int *)malloc(sizeof(arr)); 
+	dupe = (int *)malloc(sizeof(arr));
 	if (!dupe)
 		return (NULL);
 	while (arr[++i])
@@ -124,9 +126,9 @@ int *strdup_int(int *arr)
 	return (dupe);
 }
 
-bool    is_duped(t_node *node)
+bool	is_duped(t_node *node)
 {
-	t_node *tmp;
+	t_node	*tmp;
 
 	tmp = node->next;
 	while (node && tmp)
@@ -143,9 +145,9 @@ bool    is_duped(t_node *node)
 	return (FALSE);
 }
 
-bool    already_sorted(t_node *node)
+bool	already_sorted(t_node *node)
 {
-	t_node *tmp;
+	t_node	*tmp;
 	int		f;
 
 	f = 0;
@@ -162,10 +164,10 @@ bool    already_sorted(t_node *node)
 	return (FALSE);
 }
 
-int lst_size(t_node *lst)
+int	lst_size(t_node *lst)
 {
-	int i;
-	t_node *tmp;
+	int		i;
+	t_node	*tmp;
 
 	i = 0;
 	tmp = lst;

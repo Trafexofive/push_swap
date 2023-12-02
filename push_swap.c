@@ -1,54 +1,37 @@
-// fill the stack from the arr,
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 22:48:52 by mlamkadm          #+#    #+#             */
+/*   Updated: 2023/12/02 23:17:41 by mlamkadm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "push_swap.h"
 #include "printf/ft_printf.h"
+#include "push_swap.h"
 #include <stdbool.h>
 #include <stdio.h>
 
-//put the int *data in a struct
+// void leak()
+// {
+// 	system("leaks push_swap");
+// }
+	// atexit(leak);
 
-
-
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_head      *stack_a;
-    t_head      *stack_b;
+	t_head	*stack_a;
+	t_head	*stack_b;
 
-
-    stack_a = ft_parse(ac, av);
-    stack_b = stack_init('b');
-    
-    
+	stack_a = ft_parse(ac, av);
+	if (stack_a == NULL)
+		exit (EXIT_SUCCESS);
+	stack_b = stack_init('b');
 	sort(stack_a, stack_b);
-    
-    print_stacks(stack_a, stack_b);
-
-
-
-
-
-    free_stack(stack_a);
-    free_stack(stack_b);
-	// free(data);
-	
-	return EXIT_SUCCESS;
+	free_stack(stack_a);
+	free_stack(stack_b);
+	exit (EXIT_SUCCESS);
 }
-
-    // stack_b = stack_init(stack_b, 'b');
-    // len = ft_strlen_int(data);
-    // stack_a->bottom = create_stack(len, data, stack_a);
-    // rotate(stack_a);
-    // ft_printf("node data ====>%d\n", stack_a->stack_len);
-    
-    // sa(stack_a);
-    // rotate(stack_a);/ reverse_rotate(stack_a);
-
-	
-    // printf("sort ===%d\n", issort);
-    // ft_putnbr_fd(sort, 1);
-    // pa(stack_a, stack_b);
-	// pa(stack_a, stack_b);
-	// pa(stack_a, stack_b);
-    // sort(stack_a, stack_b);
-
-	// index = find_position(stack_a, 6);

@@ -6,60 +6,60 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 19:46:35 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/12/02 22:38:32 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/12/02 23:21:41 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool is_sort(t_head *stack)
+bool	is_sort(t_head *stack)
 {
-	t_node *current;
+	t_node	*current;
 
 	if (stack == NULL || stack->top == NULL)
-		return FALSE;
-
+		return (FALSE);
 	current = stack->top;
-	while (current != stack->bottom && current->next != NULL && current->next->data > current->data)
+	while (current != stack->bottom && current->next != NULL
+		&& current->next->data > current->data)
 		current = current->next;
 	if (current == stack->bottom)
 		return (ft_printf("sorted", TRUE));
-	return FALSE;
+	return (FALSE);
 }
 
-void    sort_index(t_head *stack, t_node *new_node)
+void	sort_index(t_head *stack, t_node *new_node)
 {
-    t_node  *top_node;
+	t_node	*top_node;
 
-    if (stack == NULL)
-        return ;
-    top_node = stack->top;
-    while (top_node != NULL) 
-    {
-        if (new_node->data > top_node->data)
-            new_node->index++;
-        else if (new_node->data < top_node->data)
-            top_node->index++;
-        top_node = top_node->next;
-    }
+	if (stack == NULL)
+		return ;
+	top_node = stack->top;
+	while (top_node != NULL)
+	{
+		if (new_node->data > top_node->data)
+			new_node->index++;
+		else if (new_node->data < top_node->data)
+			top_node->index++;
+		top_node = top_node->next;
+	}
 }
 
-bool    sort_two(t_head *stack)
+bool	sort_two(t_head *stack)
 {
-    t_node  *top_node;
+	t_node	*top_node;
 
-    top_node = stack->top;
-    if (top_node->data > top_node->next->data)
-    {
-        swap(stack);
-        return (TRUE);
-    }
-     return FALSE;
+	top_node = stack->top;
+	if (top_node->data > top_node->next->data)
+	{
+		swap(stack);
+		return (TRUE);
+	}
+	return (FALSE);
 }
 
-int find_index(t_head *stack, int index)
+int	find_index(t_head *stack, int index)
 {
-	t_node *current;
+	t_node	*current;
 
 	current = stack->top;
 	while (current)
@@ -71,9 +71,9 @@ int find_index(t_head *stack, int index)
 	return (-1);
 }
 
-int ft_is_sorted(t_head *stack)
+int	ft_is_sorted(t_head *stack)
 {
-	t_node *current;
+	t_node	*current;
 
 	current = stack->top;
 	while (current)
@@ -85,10 +85,10 @@ int ft_is_sorted(t_head *stack)
 	return (TRUE);
 }
 
-t_node *min_stack(t_head *stack)
+t_node	*min_stack(t_head *stack)
 {
-	t_node *current;
-	t_node *min;
+	t_node	*current;
+	t_node	*min;
 
 	current = stack->top;
 	min = current;
@@ -117,29 +117,36 @@ t_node	*max_stack(t_head *stack)
 	return (max);
 }
 
-bool    sort_three(t_head *stack)
+bool	sort_three(t_head *stack)
 {
 	if (stack->top == max_stack(stack) && stack->top->next == min_stack(stack))
 		rotate(stack);
-	else if (stack->top != min_stack(stack) && stack->top->next == max_stack(stack))
+	else if (stack->top != min_stack(stack)
+		&& stack->top->next == max_stack(stack))
 		reverse_rotate(stack);
-	else if (stack->top == max_stack(stack) && stack->top->next != min_stack(stack))
+	else if (stack->top == max_stack(stack)
+		&& stack->top->next != min_stack(stack))
 	{
 		sa(stack);
 		reverse_rotate(stack);
 	}
-	else if (stack->top != min_stack(stack)  && stack->top->next == max_stack(stack)){
+	else if (stack->top != min_stack(stack)
+		&& stack->top->next == max_stack(stack))
+	{
 		reverse_rotate(stack);
 		sa(stack);
 	}
-	else if (stack->top != max_stack(stack) && stack->top->next == min_stack(stack)){
+	else if (stack->top != max_stack(stack)
+		&& stack->top->next == min_stack(stack))
+	{
 		sa(stack);
 	}
-	else if (stack->top == min_stack(stack) && stack->top->next == max_stack(stack)){
+	else if (stack->top == min_stack(stack)
+		&& stack->top->next == max_stack(stack))
+	{
 		sa(stack);
 		rotate(stack);
 	}
-		
 	return (TRUE);
 }
 
@@ -148,7 +155,7 @@ bool	search_index(t_head *stack)
 	t_node	*current;
 	int		min_index;
 	int		len;
-	int 	i;
+	int		i;
 
 	current = stack->top;
 	min_index = current->index;
@@ -169,7 +176,7 @@ bool	search_index(t_head *stack)
 	return (1);
 }
 
-int min_index(t_head *stack)
+int	min_index(t_head *stack)
 {
 	t_node	*current;
 	int		min_index;
@@ -202,7 +209,7 @@ int	len_stack(t_head *stack)
 
 bool	sort_five(t_head *stack_a, t_head *stack_b)
 {
-	while(len_stack(stack_a) > 3)
+	while (stack_a->stack_len > 3)
 	{
 		while (stack_a->top->index != min_index(stack_a))
 		{
@@ -212,7 +219,6 @@ bool	sort_five(t_head *stack_a, t_head *stack_b)
 				reverse_rotate(stack_a);
 		}
 		pb(stack_a, stack_b);
-		printf("len stack_a ===>%d\n", len_stack(stack_a));
 	}
 	sort_three(stack_a);
 	pa(stack_a, stack_b);
@@ -220,24 +226,23 @@ bool	sort_five(t_head *stack_a, t_head *stack_b)
 	return (TRUE);
 }
 
-bool    sort(t_head *stack_a, t_head *stack_b)
+bool	sort(t_head *stack_a, t_head *stack_b)
 {
-    if (stack_a->stack_len == 2) 
-        return (sort_two(stack_a));
-    else if (stack_a->stack_len == 3)
-        return (sort_three(stack_a));
+	if (stack_a->stack_len == 2)
+		return (sort_two(stack_a));
+	else if (stack_a->stack_len == 3)
+		return (sort_three(stack_a));
 	else if (stack_a->stack_len <= 5)
 		return (sort_five(stack_a, stack_b));
 	else if (stack_a->stack_len > 5)
 		return (sort_above_five(stack_a, stack_b));
-
-    return (FALSE);
+	return (FALSE);
 }
 
-int ft_find_largest(t_head *stack)
+int	ft_find_largest(t_head *stack)
 {
-	int max_index;
-	t_node *current;
+	int		max_index;
+	t_node	*current;
 
 	current = stack->top;
 	max_index = current->index;
@@ -251,10 +256,10 @@ int ft_find_largest(t_head *stack)
 }
 int	find_position(t_head *stack)
 {
-	int	pos;
-	int	lenght;
-	int	max;
-	t_node *current;
+	int		pos;
+	int		lenght;
+	int		max;
+	t_node	*current;
 
 	pos = -1;
 	lenght = 0;
@@ -283,18 +288,21 @@ int	is_top(t_head *head, t_head *node)
 	return (0);
 }
 
-void sort_stack_b(t_head *stack_a, t_head *stack_b)
+void	sort_stack_b(t_head *stack_a, t_head *stack_b)
 {
-	int position = 0;
-	int max_index = 0;
+	int	position;
+	int	max_index;
 
+	position = 0;
+	max_index = 0;
 	while (stack_b->top)
 	{
 		max_index = ft_find_largest(stack_b);
 		position = find_position(stack_b);
 		if (position == 0)
 		{
-			if (max_index == stack_b->top->index && is_top(stack_b, stack_b) == 1)
+			if (max_index == stack_b->top->index && is_top(stack_b,
+					stack_b) == 1)
 				pa(stack_a, stack_b);
 			else
 				rotate(stack_b);
@@ -303,14 +311,13 @@ void sort_stack_b(t_head *stack_a, t_head *stack_b)
 			reverse_rotate(stack_b);
 	}
 }
-bool sort_above_five(t_head *stack_a, t_head *stack_b)
+bool	sort_above_five(t_head *stack_a, t_head *stack_b)
 {
 	int i;
 	int j;
 
 	i = 0;
 	j = 19;
-
 	while (stack_a->top)
 	{
 		if (stack_a->top->index <= i)
