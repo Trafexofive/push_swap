@@ -122,7 +122,6 @@ t_head  *stack_init(t_head *stack)
 
 int main(int ac, char **av)
 {
-
     t_head      *stack_a;
     t_head      *stack_b;
 	int	        *data;
@@ -131,34 +130,24 @@ int main(int ac, char **av)
     data = 0;
 	data = ft_parse(ac, av, data);
     len = ft_strlen_int(data);
-
     stack_a = NULL;
     stack_b = NULL;
-
     stack_a = stack_init(stack_a);
     stack_b = stack_init(stack_b);
-
     stack_a->bottom = create_stack(len, data, stack_a);
-	
-
-
-
     // rotate(stack_a);
     
-    reverse_rotate(stack_a);
-    // pop_last(stack_a);
-
     // sa(stack_a);
+    // reverse_rotate(stack_a);
+    // pop_last(stack_a);
 	// reverse_rotate(stack_a);
     // issort = is_sort(stack_a);
     // printf("sort ===%d\n", issort);
-
     // ft_putnbr_fd(sort, 1);
     // pa(stack_a, stack_b);
 	// pa(stack_a, stack_b);
 	// pa(stack_a, stack_b);
     // sort(stack_a);
-
     // ft_printf("node data ====>%d\n", stack_a->bottom->prev->data);
 
     print_stacks(stack_a, stack_b);

@@ -5,7 +5,7 @@ NAME	:= push_swap
 
 CFLAGS	:= -Wextra -Wall -Werror
 
-SRCS	:= parse.c sort.c push_swap.c utils.c stack_operations.c
+SRCS	:= parse.c sort.c push_swap.c utils.c stack_operations.c	
 
 LIBFT := libft/libft.a
 

@@ -147,28 +147,25 @@ void    rr(t_head *stack_a, t_head *stack_b)
     rotate(stack_b);
 }
 
-void    reverse_rotate(t_head *stack)
+void reverse_rotate(t_head *stack)
 {
-    //The last element becomes the first one.
+	if (stack->top == NULL || stack->top->next == NULL)
+		return;
 
-    t_node  *top_node;
-    t_node  *bottom_node;
-    t_node  *bottom_prev_node;
-
-    top_node = stack->top;
-    bottom_node = stack->bottom;
-    bottom_prev_node = bottom_node->prev;
+	t_node *top_node = stack->top;
+	t_node *bottom_node = stack->bottom;
+	t_node *bottom_prev_node = bottom_node;
 
 	bottom_node->next = top_node;
-    bottom_node->prev = NULL;
-    bottom_prev_node->next = NULL;
-    stack->bottom = bottom_prev_node;
-    stack->top = bottom_node;
-    
-    if (stack->name == 'a')
-        ft_printf("rra\n");
-    if (stack->name == 'b')
-        ft_printf("rrb\n");
+	bottom_prev_node->next = NULL;
+	bottom_prev_node->prev = NULL;
+	stack->bottom = bottom_prev_node;
+	stack->top = bottom_node;
+
+	if (stack->name == 'a')
+		ft_printf("rra\n");
+	else if (stack->name == 'b')
+		ft_printf("rrb\n");
 }
 
 void    rrr(t_head *stack_a, t_head *stack_b)
