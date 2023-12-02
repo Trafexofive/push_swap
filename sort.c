@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 19:46:35 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/12/02 23:21:41 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/12/02 23:25:50 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,12 +211,15 @@ bool	sort_five(t_head *stack_a, t_head *stack_b)
 {
 	while (stack_a->stack_len > 3)
 	{
-		while (stack_a->top->index != min_index(stack_a))
+		if (search_index(stack_a) == 0)
 		{
-			if (search_index(stack_a) == 0)
-				rotate(stack_a);
-			else
-				reverse_rotate(stack_a);
+			while (stack_a->top->index != min_index(stack_a))
+				rotate(stack_a)
+		}
+		else 
+		{
+			while (stack_a->top->index != min_index(stack_a))
+				reverse_rotate(stack_a);	
 		}
 		pb(stack_a, stack_b);
 	}
