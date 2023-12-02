@@ -22,8 +22,7 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
     	    current_a = current_a->next;
 
     	}
-		if (current_a == stack_a->bottom)
-    		ft_printf("%d | %d\n---------\n", current_a->index, current_a->data);
+
 		return ;
 	}
 		ft_printf("Stack A :\n");
@@ -44,7 +43,19 @@ void    print_stacks(t_head *stack_a, t_head *stack_b)
 	// {
     //     ft_printf("%d | %d \n---------\n", current_b->index, current_b->data);
 	// }
+}
 
+void matrix_free(char **matrix)
+{
+	int i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }
 
 // Function to free the memory used by the linked list
@@ -100,7 +111,6 @@ int ft_puttab(char **tab)
     return (i);
 }
 
-//function to auto_print sizeof;
 int *strdup_int(int *arr)
 {
     int i;

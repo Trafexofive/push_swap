@@ -99,30 +99,32 @@ bool    sort_two(t_head *stack)
 bool    sort_three(t_head *stack)
 {
 
-	if (stack->top->index == 1 && stack->top->next->index == 2 && stack->top->next->next->index == 3)
+		ft_putstr_fd("stop", 1);
+	if (stack->top->index == 0 && stack->top->next->index == 1 && stack->top->next->next->index == 2)
 		return (TRUE);
-	else if (stack->top->index == 1 && stack->top->next->index == 3 && stack->top->next->next->index == 2)
+	else if (stack->top->index == 0 && stack->top->next->index == 2 && stack->top->next->next->index == 1)
 	{
 		swap(stack);
+		rotate(stack);
 		return (TRUE);
 	}
-	else if (stack->top->index == 2 && stack->top->next->index == 1 && stack->top->next->next->index == 3)
+	else if (stack->top->index == 1 && stack->top->next->index == 0 && stack->top->next->next->index == 2)
 	{
 		reverse_rotate(stack);
 		return (TRUE);
 	}
-	else if (stack->top->index == 2 && stack->top->next->index == 3 && stack->top->next->next->index == 1)
+	else if (stack->top->index == 1 && stack->top->next->index == 2 && stack->top->next->next->index == 0)
 	{
 		rotate(stack);
 		return (TRUE);
 	}
-	else if (stack->top->index == 3 && stack->top->next->index == 1 && stack->top->next->next->index == 2)
+	else if (stack->top->index == 2 && stack->top->next->index == 0 && stack->top->next->next->index == 1)
 	{
 		swap(stack);
 		reverse_rotate(stack);
 		return (TRUE);
 	}
-	else if (stack->top->index == 3 && stack->top->next->index == 2 && stack->top->next->next->index == 1)
+	else if (stack->top->index == 2 && stack->top->next->index == 1 && stack->top->next->next->index == 0)
 	{
 		rotate(stack);
 		swap(stack);
@@ -133,7 +135,7 @@ bool    sort_three(t_head *stack)
 
 bool    sort(t_head *stack)
 {
-    if (stack->stack_len == 2)      
+    if (stack->stack_len == 2) 
         return (sort_two(stack));
     else if (stack->stack_len == 3)
         return (sort_three(stack));

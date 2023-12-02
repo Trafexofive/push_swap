@@ -21,7 +21,8 @@ void pop(t_head *stack, unsigned int index)
 		current = current->next;
 		index--;
 	}
-	if (current != NULL) {
+	if (current != NULL) 
+	{
 		if (current->prev != NULL) {
 			current->prev->next = current->next;
 		}
@@ -37,7 +38,6 @@ void    swap(t_head *stack)
     t_node  *top_next_node;
     t_node  *top_node;
 
-
     top_node = stack->top;
     top_next_node = stack->top->next;
     // The stack is empty or has only one element, nothing to swap
@@ -45,7 +45,7 @@ void    swap(t_head *stack)
         return;
     top_node->next = top_next_node->next;
     top_node->prev = top_next_node;
-    top_next_node->prev = NULL;
+    // top_next_node->prev = NULL;
     top_next_node->next = top_node;
 	// top_next_node->next = top_node->next;
     stack->top = top_next_node;
@@ -151,17 +151,17 @@ void reverse_rotate(t_head *stack)
 {
 	if (stack->top == NULL || stack->top->next == NULL)
 		return;
-
 	t_node *top_node = stack->top;
 	t_node *bottom_node = stack->bottom;
-	t_node *bottom_prev_node = bottom_node;
+	t_node *bottom_prev_node = stack->bottom->prev;
 
 	bottom_node->next = top_node;
 	bottom_prev_node->next = NULL;
-	bottom_prev_node->prev = NULL;
-	stack->bottom = bottom_prev_node;
-	stack->top = bottom_node;
+	top_node->prev = bottom_prev_node;
+	bottom_node->prev = NULL;
 
+	stack->bottom = top_node;
+	stack->top = bottom_node;
 	if (stack->name == 'a')
 		ft_printf("rra\n");
 	else if (stack->name == 'b')

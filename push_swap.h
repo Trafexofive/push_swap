@@ -42,13 +42,14 @@ int put_intarr(int *tab);
 void print_stacks(t_head* stack_a, t_head *stack_b);
 size_t	ft_strlen_int(int *c);
 void    swap(t_head *stack);
-t_node  *fill_node(int data, t_head *head);
+void	fill_node(int data, t_head **stack);
 void    pop(t_head *stack, unsigned int index);
 void    pop_last(t_head *stack);
 void    pa(t_head *stack_a, t_head *stack_b);
 void    pb(t_head *stack_a, t_head *stack_b);
 void    reverse_rotate(t_head *stack);
 bool    is_sort(t_head *stack);
+void matrix_free(char **matrix);
 
 void    sort_index(t_head *stack, t_node *new_node);
 /*-------------- Parsing --------------------*/

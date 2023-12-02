@@ -2,12 +2,39 @@
 
 #include "./push_swap.h"
 
+int counter(char **spl){
+	int i;
 
+	i = 0;
+	while (spl[i])
+		i++;
+	// printf("i = %d\n", i);
+	return (i);
+}
+
+int len_argc(char **argv)
+{
+	int i;
+	int len;
+	char **spl;
+
+	i = 0;
+	len = 0;
+	while (argv[i]){
+		printf("argv[%d] = %s\n", i, argv[i]);
+		spl = ft_split(argv[i], ' ');
+		len += counter(spl);
+		i++;
+		// matrix_free(spl);
+	}
+	return (len);
+}
 
 int* parse_args(int argc, char *argv[])
 {
     // Allocate memory for the array
-    int *result = (int*)malloc(argc * sizeof(int));
+	printf("len_argc = %d\n", len_argc(&argv[1]));
+    int *result = (int*)malloc(13 * sizeof(int));
     if (result == NULL)
         exit(EXIT_FAILURE);
 
