@@ -62,5 +62,7 @@ t_node* create_node(int data, int index);
 bool    sort(t_head *stack);
 bool    sort_two(t_head *stack);
 int put_intarr(int *tab);
+void	sa(t_head *stack_a);
+void	sb(t_head *stack_b);
 
 #endif
