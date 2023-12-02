@@ -6,12 +6,11 @@
 #    By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 22:13:31 by mlamkadm          #+#    #+#              #
-#    Updated: 2023/12/02 01:58:13 by mlamkadm         ###   ########.fr        #
+#    Updated: 2023/12/02 03:24:11 by mlamkadm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Wextra -Werror
-
 CC = cc
 
 NAME = libftprintf.a

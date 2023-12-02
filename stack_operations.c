@@ -91,8 +91,6 @@ void    pa(t_head *stack_a, t_head *stack_b)
 	}
     stack_a->top = stack_a->top->next;
     top_a->next = NULL;
-	stack_b->stack_len++;
-	stack_a->stack_len--;
     free(top_a);
 }
 

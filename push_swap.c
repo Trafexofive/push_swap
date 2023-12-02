@@ -121,11 +121,19 @@ int main(int ac, char **av)
     stack_a = NULL;
     stack_b = NULL;
     stack_a = stack_init(stack_a);
+	
     stack_b = stack_init(stack_b);
 
     stack_a->bottom = create_stack(len, data, stack_a);
+	put_intarr(data);
 
+	while (stack_a->top)
+	{
+		printf("%i\n", stack_a->top->data);
+		stack_a->top = stack_a->top->next;
+	}
 
+	exit(0);
 
     // rotate(stack_a);
     
@@ -138,13 +146,11 @@ int main(int ac, char **av)
     // printf("sort ===%d\n", issort);
 
     // ft_putnbr_fd(sort, 1);
-    pa(stack_a, stack_b);
-	pa(stack_a, stack_b);
-	pa(stack_a, stack_b);
+	puts("jjjjjjjjjjjjj");
     // pb(stack_a, stack_b);
 	// pb(stack_a, stack_b);
 	// pb(stack_a, stack_b);
-    sort(stack_b);
+    // sort(stack_b);
     printf("%d ===== stack_len", stack_b->stack_len);
 
 
