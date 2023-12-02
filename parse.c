@@ -7,128 +7,64 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-bool hasValidSign(const char* str) {
-    if (*str == '\0') {
-        return false;  // Empty string
-    }
 
-    if (*str == '+' || *str == '-') {
-        str++;
-    }
 
-    while (*str >= '0' && *str <= '9')
-        str++;
-    return *str == '\0';  // Valid sign only if the entire string is consumed as a number
-}
+#include <stdio.h>
+#include <stdlib.h>
 
-bool isValidNumber(const char* str)
-{
-    if (*str == '+' || *str == '-')
-        str++;  // Skip the sign if present
-    while (*str >= '0' && *str <= '9')
-        str++;
-    return *str == '\0';  // Valid number only if the entire string is consumed as a number
-}
-
-int* parseArgsToIntArray(int argc, char* argv[], int* arraySize) {
-    int count = 0;
-
-    // Count the number of integers in the arguments
-    for (int i = 1; i < argc; i++) {
-        char* ptr = argv[i];
-        int signCount = 0;
-
-        while (*ptr != '\0') {
-            if ((*ptr == '+' || *ptr == '-') && (*(ptr + 1) >= '0' && *(ptr + 1) <= '9') && hasValidSign(ptr)) {
-                signCount++;
-                if (signCount > 1) {
-                    fprintf(stderr, "Error: Number has more than one sign: %s\n", argv[i]);
-                    exit(EXIT_FAILURE);
-                }
-                count++;
-                ptr += 2; // Skip the '+' or '-' and the first digit
-                while (*ptr >= '0' && *ptr <= '9') {
-                    ptr++;
-                }
-            } else if (*ptr >= '0' && *ptr <= '9' && isValidNumber(ptr)) {
-                count++;
-                while (*ptr >= '0' && *ptr <= '9') {
-                    ptr++;
-                }
-            } else {
-                fprintf(stderr, "Error: Invalid character in argument: %s\n", argv[i]);
-                exit(EXIT_FAILURE);
-            }
-        }
-    }
-
-    // Allocate memory for the integer array and signs array
-    int* resultArray = (int*)malloc(count * sizeof(int));
-    char* signsArray = (char*)malloc(count * sizeof(char));
-    if (resultArray == NULL || signsArray == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
+int* parseArguments(int argc, char *argv[], int *size) {
+    // Allocate memory for the array
+    int *result = (int*)malloc(argc * sizeof(int));
+    if (result == NULL) {
+        fprintf(stderr, "Memory allocation error\n");
         exit(EXIT_FAILURE);
     }
 
-    // Parse the integers from the arguments and store them in the array along with signs
-    int index = 0;
+    // Initialize size to 0
+    *size = 0;
 
-    for (int i = 1; i < argc; i++) {
-        char* ptr = argv[i];
-        int signCount = 0;
+    // Loop through command line arguments using while loop
+    int i = 1;
+    while (i < argc) {
+        char *token = argv[i];
 
-        while (*ptr != '\0') {
-            if ((*ptr == '+' || *ptr == '-') && (*(ptr + 1) >= '0' && *(ptr + 1) <= '9') && hasValidSign(ptr)) {
-                signCount++;
-                if (signCount > 1) {
-                    fprintf(stderr, "Error: Number has more than one sign: %s\n", argv[i]);
-                    exit(EXIT_FAILURE);
-                }
-                signsArray[index] = *ptr;
-                resultArray[index++] = atoi(ptr);
-                ptr += 2; // Skip the '+' or '-' and the first digit
-                while (*ptr >= '0' && *ptr <= '9') {
-                    ptr++;
-                }
-            } else if (*ptr >= '0' && *ptr <= '9' && isValidNumber(ptr)) {
-                signsArray[index] = '+';
-                resultArray[index++] = atoi(ptr);
-                while (*ptr >= '0' && *ptr <= '9') {
-                    ptr++;
-                }
-            } else {
-                printf("Error: Invalid character in argument: %s\n", argv[i]);
-                exit(EXIT_FAILURE);
-            }
+        // Convert string to integer and handle errors
+        int value = strtol(token, &token, 10);
+        if (*token != '\0' && *token != ' ' && *token != '\t') {
+            fprintf(stderr, "Invalid argument: %s\n", argv[i]);
+            exit(EXIT_FAILURE);
         }
+
+        // Add the parsed integer to the array
+        result[*size] = value;
+        (*size)++;
+
+        // Increment loop variable
+        i++;
     }
 
-    // Set the array size if requested
-    if (arraySize != NULL) {
-        *arraySize = count;
-    }
-
-    // Free the allocated memory for signsArray as it is not needed outside the function
-    free(signsArray);
-
-    return resultArray;
+    return result;
 }
 
-int main(int argc, char* argv[]) {
-    int arraySize;
-    int* resultArray = parseArgsToIntArray(argc, argv, &arraySize);
+int main(int argc, char *argv[]) {
+    int size;
+    int *array = parseArguments(argc, argv, &size);
 
-    printf("Array Size: %d\n", arraySize);
-    printf("Parsed Integers with Signs: ");
-    for (int i = 0; i < arraySize; i++) {
-        printf("%d ", resultArray[i]);
+    // Print the parsed array using while loop
+    int i = 0;
+    printf("Parsed Array: ");
+    while (i < size) {
+        printf("%d ", array[i]);
+        i++;
     }
+    printf("\n");
 
     // Don't forget to free the allocated memory
-    free(resultArray);
+    free(array);
 
     return 0;
 }
+
 
 
 // int *parse_string(int ac, char **av, int *data)
