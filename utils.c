@@ -77,7 +77,7 @@ size_t	ft_strlen_int(int *c)
 	size_t	i;
 
 	i = 0;
-	while (c[i])
+	while (c[i] && c)
 		i++;
 	return (i);
 }
@@ -94,7 +94,6 @@ int put_intarr(int *tab)
         if (!tab[i])
             break;
         ft_printf("Index = %d | %d\n", i, tab[i]);
-
     }
     return (i);
 }

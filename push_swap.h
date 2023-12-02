@@ -56,14 +56,18 @@ void    sort_index(t_head *stack, t_node *new_node);
 int *parse_multi(int ac, char **av, int *data);
 int *parse_string(int ac, char **av, int *data);
 int *ft_parse(int ac, char **av, int *data);
+bool sort_above_five(t_head *stack_a, t_head *stack_b);
+void    rotate(t_head *stack);
+t_node *create_stack(int len, int *arr,t_head *stack);
 bool    is_duped(int *arr);
 
 /*-------------- mandatory --------------------*/
 t_node* create_node(int data, int index);
-bool    sort(t_head *stack);
+bool    sort(t_head *stack_a, t_head *stack_b);
 bool    sort_two(t_head *stack);
 int put_intarr(int *tab);
 void	sa(t_head *stack_a);
 void	sb(t_head *stack_b);
+t_head  *stack_init(t_head *stack, char c);
 
 #endif

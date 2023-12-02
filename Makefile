@@ -3,9 +3,9 @@ CC := cc
 
 NAME	:= push_swap
 
-CFLAGS	:= -Wextra -Wall -Werror
+CFLAGS	:= -Wextra -Wall -Werror -g -fsanitize=address,undefined
 
-SRCS	:= parse.c sort.c push_swap.c utils.c stack_operations.c	
+SRCS	:= parse.c sort.c push_swap.c utils.c stack_operations.c stack_initialize.c
 
 LIBFT := libft/libft.a
 
@@ -14,10 +14,10 @@ PRINTF := printf/libftprintf.a
 OBJS	:= ${SRCS:.c=.o}
 
 all: $(NAME)
-	./push_swap  3 1
+	./push_swap  3 1555 2 4 5 6 7 85 93 10 11 1255 13 14 15 16 17 183 19 20 
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
 
 lib : 
 	@make -C ./libft && make -C ./printf

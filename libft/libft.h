@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:35:25 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/12/02 00:53:16 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:51:00 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
-int		ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 char	*ft_itoa(int n);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*get_next_line(int fd);

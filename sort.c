@@ -133,12 +133,46 @@ bool    sort_three(t_head *stack)
     return (FALSE);
 }
 
-bool    sort(t_head *stack)
+bool    sort(t_head *stack_a, t_head *stack_b)
 {
-    if (stack->stack_len == 2) 
-        return (sort_two(stack));
-    else if (stack->stack_len == 3)
-        return (sort_three(stack));
+    if (stack_a->stack_len == 2) 
+        return (sort_two(stack_a));
+    else if (stack_a->stack_len == 3)
+        return (sort_three(stack_a));
+	else if (stack_a->stack_len > 5)
+		return (sort_above_five(stack_a, stack_b));
 
     return (FALSE);
+}
+
+
+
+bool sort_above_five(t_head *stack_a, t_head *stack_b)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 19;
+
+	while (stack_a)
+	{
+		if (stack_a->top->index <= i)
+		{
+			pb(stack_a, stack_b);
+			i++;
+		}
+		else if (stack_a->top->index <= i + j)
+		{
+			pb(stack_a, stack_b);
+			rotate(stack_b);
+			i++;
+		}
+		else
+			rotate(stack_a);
+
+
+		stack_a->top = stack_a->top->next;
+	}
+	return (TRUE);
 }

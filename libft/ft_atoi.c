@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 02:04:59 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/14 13:47:04 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:50:41 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,17 @@ static int	ft_whitespace(const char c)
 		return (1);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	unsigned int	int_value;
-	int				i;
-	int				sign;
+	long	int_value;
+	int		i;
+	int		sign;
 
 	int_value = 0;
 	i = 0;
 	sign = 1;
+	if (!str)
+		return (0);
 	while (ft_whitespace(str[i]) == 0)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
